@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
     "pages/publish/publish"
@@ -9,27 +10,5 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "圈子",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "image/wechat.png",
-        "selectedIconPath": "image/wechatHL.png"
-      },
-      {
-        "pagePath": "pages/logs/logs",
-        "text": "我的",
-        "iconPath": "image/wechat.png",
-        "selectedIconPath": "image/wechatHL.png"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "image/wechat.png",
-        "selectedIconPath": "image/wechatHL.png"
-      }
-    ]
   }
 }

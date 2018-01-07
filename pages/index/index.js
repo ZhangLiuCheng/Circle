@@ -11,15 +11,15 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    // wx.redirectTo({
-    //   url: '../logs/logs',
-    // })
+    wx.redirectTo({
+      url: '../logs/logs',
+    })
     // wx.navigateTo({
     //   url: '../logs/logs'
     // })
-    wx.navigateTo({
-      url: '../publish/publish'
-    })
+    // wx.navigateTo({
+    //   url: '../publish/publish'
+    // })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
