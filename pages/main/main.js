@@ -1,35 +1,37 @@
-// pages/home/home.js
+// pages/main/main.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    tabInex : 0,
-    homeSrc: "image/home_check.png"
+    tabInex : 0
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    
+  },
+  
+  onReady: function () {
+    this.homeModal = this.selectComponent("#homeModal");
+    this.myModal = this.selectComponent("#myModal");
+    this.homeModal.showModal();
     this.setData({
-      tabIndex:0
+      tabIndex: 0
     })
   },
 
   tabIndex:function(e) {
+    this.homeModal.hiddenModal();
+    this.myModal.hiddenModal();
     var idVar = e.currentTarget.id;
     if (idVar == 'home') {
+      this.homeModal.showModal();
       this.setData({
         tabIndex: 0
       })
-      console.log("选择首页")
     } else {
+      this.myModal.showModal();
       this.setData({
         tabIndex: 1
       })
-      console.log("选择我的")
     }
   },
 

@@ -1,15 +1,8 @@
-<!-- <import src="../templates/header.wxml" />
-<view>
-  <template is="msgItem" data="{{...item}}" />
-</view>  -->
-
 <loginModal id="loginModal" bind:sure="OnConfirm">
   <view>
     <text>我是slot</text>
   </view>
 </loginModal>
-
-<text>pages/publish.wxml</text>
 
 <view>
   <button catchtap='showCustonModal'>显示弹窗</button>

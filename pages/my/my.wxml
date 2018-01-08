@@ -1,0 +1,4 @@
+<!--pages/my/my.wxml-->
+<view hidden='{{modalHidden}}'>
+  <text>pages/my/my.wxml</text>
+</view>

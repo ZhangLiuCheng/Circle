@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "homeModal": "../home/home",
+    "myModal": "../my/my"
+  }
+}

@@ -1,0 +1,10 @@
+<!--pages/home/home.wxml-->
+<view class="container" hidden='{{modalHidden}}'>
+  <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+    <view class="item_bd">
+      <text>{{item.title}}</text>
+      <text>{{item.message}}</text>
+    </view>
+  </block>
+  <text class='test'></text>
+</view>

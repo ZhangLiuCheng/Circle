@@ -1,7 +1,8 @@
-<!--pages/home/home.wxml-->
-<view class="container">
+<!--pages/main/main.wxml-->
+<view id="container">
 
-  <icon type='warn' size="33"></icon>
+  <homeModal id="homeModal"> </homeModal>
+  <myModal id="myModal"> </myModal>
 
 </view>
 
@@ -15,6 +16,6 @@
   </view>
   <view id="my" class="tabBar-item" catchtap='tabIndex'>
     <image class='tabBar-item-image' mode='aspectFit' src="{{tabIndex==1?'image/my_check.png':'image/my_uncheck.png'}}" />
-    <text class='tabBar-item-text'>我的</text> 
+    <text class='tabBar-item-text'>我的</text>
   </view>
 </view>
