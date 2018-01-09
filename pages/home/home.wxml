@@ -2,8 +2,8 @@
 <view class="container" hidden='{{modalHidden}}'>
   <block wx:for-items="{{list}}" wx:key="{{item.id}}">
     <view class="item_bd">
-      <text>{{item.title}}</text>
-      <text>{{item.message}}</text>
+      <text class="item_bd_title">{{item.title}}</text>
+      <text class="item_bd_message">{{item.message}}</text>
     </view>
   </block>
   <text class='test'></text>
