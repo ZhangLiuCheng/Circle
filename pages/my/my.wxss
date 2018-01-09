@@ -1,9 +1,19 @@
 /* pages/my/my.wxss */
-.index-hd {
-  padding: 80rpx;
-  text-align: center;
-  height: 500rpx;
-  background-color: rebeccapurple;
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.index-bd{
+  padding-bottom: 110rpx;
+}
+
+.scrollView {
+  height: 100%;
 }
 
 .kind-list {

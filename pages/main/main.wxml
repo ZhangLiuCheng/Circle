@@ -4,18 +4,19 @@
   <homeModal id="homeModal"> </homeModal>
   <myModal id="myModal"> </myModal>
 
-</view>
 
-<view class="tabBar">
-  <view id="home" class="tabBar-item" catchtap='tabIndex'>
-    <image class='tabBar-item-image' mode='aspectFit' src="{{tabIndex==0?'image/home_check.png':'image/home_uncheck.png'}}" />
-    <text class='tabBar-item-text'>首页</text>
-  </view>
-  <view id="tabBar-item-add" catchtap='publish'>
-    <image id='tabBar-item-add-image' mode='aspectFit' src="image/add.png" />
-  </view>
-  <view id="my" class="tabBar-item" catchtap='tabIndex'>
-    <image class='tabBar-item-image' mode='aspectFit' src="{{tabIndex==1?'image/my_check.png':'image/my_uncheck.png'}}" />
-    <text class='tabBar-item-text'>我的</text>
+
+  <view class="tabBar">
+    <view id="home" class="tabBar-item" catchtap='tabIndex'>
+      <image class='tabBar-item-image' mode='aspectFit' src="{{tabIndex==0?'image/home_check.png':'image/home_uncheck.png'}}" />
+      <text class='tabBar-item-text'>首页</text>
+    </view>
+    <view id="tabBar-item-add" catchtap='publish'>
+      <image id='tabBar-item-add-image' mode='aspectFit' src="image/add.png" />
+    </view>
+    <view id="my" class="tabBar-item" catchtap='tabIndex'>
+      <image class='tabBar-item-image' mode='aspectFit' src="{{tabIndex==1?'image/my_check.png':'image/my_uncheck.png'}}" />
+      <text class='tabBar-item-text'>我的</text>
+    </view>
   </view>
 </view>

@@ -1,25 +1,27 @@
 <!--pages/my/my.wxml-->
-<view hidden='{{modalHidden}}'>
-  <view class="index-bd">
-    <view class="kind-list">
-      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-        <view class="kind-list-item">
-          <view id="{{item.id}}" class="kind-list-item-hd kind-list-item-hd-show">
-            <view class="kind-list-text">{{item.name}}</view>
-            <!-- <image class="kind-list-img" src="resources/kind/{{item.id}}.png"></image> -->
-          </view>
-          <view>
-            <view class="navigator-box">
-              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
-                <navigator url="pages/{{page}}/{{page}}" class="navigator">
-                  <view class="navigator-text">{{page}}</view>
-                  <view class="navigator-arrow"></view>
-                </navigator>
-              </block>
+<view class="container" hidden='{{modalHidden}}'>
+  <scroll-view class='scrollView' scroll-y="true">
+    <view class="index-bd">
+      <view class="kind-list">
+        <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+          <view class="kind-list-item">
+            <view id="{{item.id}}" class="kind-list-item-hd kind-list-item-hd-show">
+              <view class="kind-list-text">{{item.name}}</view>
+              <!-- <image class="kind-list-img" src="resources/kind/{{item.id}}.png"></image> -->
+            </view>
+            <view>
+              <view class="navigator-box">
+                <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
+                  <navigator url="pages/{{page}}/{{page}}" class="navigator">
+                    <view class="navigator-text">{{page}}</view>
+                    <view class="navigator-arrow"></view>
+                  </navigator>
+                </block>
+              </view>
             </view>
           </view>
-        </view>
-      </block>
+        </block>
+      </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

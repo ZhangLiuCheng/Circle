@@ -1,10 +1,13 @@
 <!--pages/home/home.wxml-->
 <view class="container" hidden='{{modalHidden}}'>
-  <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-    <view class="item_bd">
-      <text class="item_bd_title">{{item.title}}</text>
-      <text class="item_bd_message">{{item.message}}</text>
+  <scroll-view class='scrollView' scroll-y="true">
+    <view class='index-bd'>
+      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+        <view class="item_bd">
+          <text class="item_bd_title">{{item.title}}</text>
+          <text class="item_bd_message">{{item.message}}</text>
+        </view>
+      </block>
     </view>
-  </block>
-  <text class='test'></text>
+  </scroll-view>
 </view>
