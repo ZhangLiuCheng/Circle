@@ -46,6 +46,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    optionPublish: function(e) {
+      var id = e.currentTarget.id;
+      wx.navigateTo({
+        url: '../publishContent/publishContent?id=' + id
+      })
+      setTimeout(function(){
+        this.hiddenModal();
+      }.bind(this), 800)
+    },
+
     showModal: function () {
       if (this.anim) {
         return;

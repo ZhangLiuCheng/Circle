@@ -2,9 +2,9 @@
   "pages": [
     "pages/main/main",
     "pages/detail/detail",
+    "pages/publishContent/publishContent",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/publish/publish"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

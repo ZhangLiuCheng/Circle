@@ -6,27 +6,27 @@
   </view>
 
   <view class='option-layout'>
-    <view class='option-item' animation='{{animOption1}}'>
+    <view class='option-item' catchtap='optionPublish' id="1" animation='{{animOption1}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_1.png" />
       <text class='option-item-txt'>分类1</text>
     </view>
     
-    <view class='option-item' animation='{{animOption2}}'>
+    <view class='option-item' catchtap='optionPublish' id="2" animation='{{animOption2}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_2.png" />
       <text class='option-item-txt'>分类2</text>
     </view>
 
-    <view class='option-item' animation='{{animOption3}}'>
+    <view class='option-item' catchtap='optionPublish' id="3" animation='{{animOption3}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_3.png" />
       <text class='option-item-txt'>分类3</text>
     </view>
 
-    <view class='option-item' animation='{{animOption4}}'>
+    <view class='option-item' catchtap='optionPublish' id="4" animation='{{animOption4}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_4.png" />
       <text class='option-item-txt'>分类4</text>
     </view>
 
-    <view class='option-item' animation='{{animOption5}}'>
+    <view class='option-item' catchtap='optionPublish' id="5" animation='{{animOption5}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_5.png" />
       <text class='option-item-txt'>分类5</text>
     </view>

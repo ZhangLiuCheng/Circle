@@ -16,9 +16,13 @@ Page({
     }
   },
 
+  onLoad: function(option) {
+    console.log(option.id);
+  },
+
   onReady: function() {
     this.loginModal = this.selectComponent("#loginModal");
-    console.log("onReady  " + this.loginModal + this.data.is_modal_Msg)
+    // console.log("onReady  " + this.loginModal + this.data.is_modal_Msg)
   },
 
   showCustonModal: function() {
