@@ -12,6 +12,7 @@ Page({
   onReady: function () {
     this.homeModal = this.selectComponent("#homeModal");
     this.myModal = this.selectComponent("#myModal");
+    this.publishOptionModal = this.selectComponent("#publishOptionModal");
     this.homeModal.showModal();
     this.setData({
       tabIndex: 0
@@ -36,8 +37,9 @@ Page({
   },
 
   publish:function() {
-    wx.navigateTo({
-      url: '../publish/publish',
-    })
+    // wx.navigateTo({
+    //   url: '../publish/publish',
+    // })
+    this.publishOptionModal.showModal();
   }
 })

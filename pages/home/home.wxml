@@ -3,10 +3,10 @@
   <scroll-view class='scrollView' scroll-y="true">
     <view class='index-bd'>
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-        <view class="item_bd">
+        <navigator class="item_bd" url='../detail/detail'>
           <text class="item_bd_title">{{item.title}}</text>
           <text class="item_bd_message">{{item.message}}</text>
-        </view>
+        </navigator>
       </block>
     </view>
   </scroll-view>

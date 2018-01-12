@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "homeModal": "../home/home",
-    "myModal": "../my/my"
+    "homeModal" : "../home/home",
+    "myModal" : "../my/my",
+    "publishOptionModal" : "../publishOption/publishOption"
   }
 }

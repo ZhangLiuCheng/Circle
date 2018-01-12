@@ -1,0 +1,39 @@
+<!--pages/publishOption/publishOption.wxml-->
+<view class='container' hidden="{{modalHidden}}">
+
+  <view>
+    <text>一些说明而已</text>
+  </view>
+
+  <view class='option-layout'>
+    <view class='option-item' animation='{{animOption1}}'>
+      <image class='option-item-image' mode='aspectFit' src="image/option_1.png" />
+      <text class='option-item-txt'>分类1</text>
+    </view>
+    
+    <view class='option-item' animation='{{animOption2}}'>
+      <image class='option-item-image' mode='aspectFit' src="image/option_2.png" />
+      <text class='option-item-txt'>分类2</text>
+    </view>
+
+    <view class='option-item' animation='{{animOption3}}'>
+      <image class='option-item-image' mode='aspectFit' src="image/option_3.png" />
+      <text class='option-item-txt'>分类3</text>
+    </view>
+
+    <view class='option-item' animation='{{animOption4}}'>
+      <image class='option-item-image' mode='aspectFit' src="image/option_4.png" />
+      <text class='option-item-txt'>分类4</text>
+    </view>
+
+    <view class='option-item' animation='{{animOption5}}'>
+      <image class='option-item-image' mode='aspectFit' src="image/option_5.png" />
+      <text class='option-item-txt'>分类5</text>
+    </view>
+  </view>
+
+
+  <view class='bottom-layout'>
+    <image class="close-image" catchtap='hiddenModal' animation='{{animClose}}' mode='aspectFit' src="image/close2.png" />
+  </view>
+</view>

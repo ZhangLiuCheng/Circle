@@ -55,7 +55,7 @@
   align-items: center;
 }
 
-/* .navigator:before {
+.navigator:before {
   content: " ";
   position: absolute;
   left: 30rpx;
@@ -72,7 +72,7 @@
 .navigator-arrow {
   padding-right: 26rpx;
   position: relative;
-} */
+}
 
 /* .navigator-arrow:after {
   content: " ";
