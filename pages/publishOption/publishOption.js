@@ -63,7 +63,7 @@ Component({
       this.anim = true;
       setTimeout(function () {
         this.anim = false;
-      }.bind(this), 1020)
+      }.bind(this), 620)
       this.setData({
         modalHidden: false
       })
@@ -81,7 +81,7 @@ Component({
         this.setData({
           modalHidden: true
         })
-      }.bind(this), 1020)
+      }.bind(this), 620)
       this.hideCloseAnim();
       this.hideOptionAnim();
     },
@@ -90,7 +90,7 @@ Component({
     showCloseAnim: function () {
       setTimeout(function () {
         var animation = wx.createAnimation({
-          duration: 500,
+          duration: 300,
           timingFunction: 'ease',
         })
         animation.scale(1.6, 1.6).rotate(45).step()
@@ -104,7 +104,7 @@ Component({
     hideCloseAnim: function () {
       setTimeout(function () {
         var animation = wx.createAnimation({
-          duration: 500,
+          duration: 300,
           timingFunction: 'ease',
         })
         animation.scale(1, 1).rotate(0).step()
@@ -126,22 +126,22 @@ Component({
         that.setData({
           animOption2: anim
         })
-      }, 200);
+      }, 150);
       this.showOptionAnimReal(function (anim) {
         that.setData({
           animOption3: anim
         })
-      }, 300);
+      }, 200);
       this.showOptionAnimReal(function (anim) {
         that.setData({
           animOption4: anim
         })
-      }, 400);
+      }, 250);
       this.showOptionAnimReal(function (anim) {
         that.setData({
           animOption5: anim
         })
-      }, 500);
+      }, 300);
     },
 
     // 隐藏分类动画
@@ -151,22 +151,22 @@ Component({
         that.setData({
           animOption1: anim
         })
-      }, 500);
+      }, 300);
       this.hideOptionAnimReal(function (anim) {
         that.setData({
           animOption2: anim
         })
-      }, 400);
+      }, 250);
       this.hideOptionAnimReal(function (anim) {
         that.setData({
           animOption3: anim
         })
-      }, 300);
+      }, 200);
       this.hideOptionAnimReal(function (anim) {
         that.setData({
           animOption4: anim
         })
-      }, 200);
+      }, 150);
       this.hideOptionAnimReal(function (anim) {
         that.setData({
           animOption5: anim
@@ -181,7 +181,7 @@ Component({
           timingFunction: 'step-start',
         })
         animation.translateY(200).opacity(0).step()
-        animation.translateY(0).opacity(1).step({ timingFunction: 'ease', duration: 500 })
+        animation.translateY(0).opacity(1).step({ timingFunction: 'ease', duration: 300 })
         callback(animation.export())
       }.bind(this), delay)
     },
@@ -189,7 +189,7 @@ Component({
     hideOptionAnimReal: function (callback, delay) {
       setTimeout(function () {
         var animation = wx.createAnimation({
-          duration: 500,
+          duration: 300,
           timingFunction: 'ease',
         })
         animation.translateY(200).opacity(0.01).step()

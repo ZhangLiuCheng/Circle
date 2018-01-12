@@ -1,2 +1,4 @@
 <!--pages/detail/de tail.wxml-->
-<text>pages/detail/de tail.wxml</text>
+<view class='container'>
+  <text>这里将展示内容详情</text>
+</view>

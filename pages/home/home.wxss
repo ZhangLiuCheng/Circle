@@ -15,7 +15,7 @@
 }
 
 .index-bd{
-  padding-bottom: 110rpx;
+  padding-bottom: 100rpx;
   padding-left: 20rpx;
   padding-right: 20rpx;
 }
@@ -31,12 +31,12 @@
 }
 
 .item_bd_title {
-  font-size: 36rpx;
-  color: #202020;
+  font-size: 33rpx;
+  color: #404040;
 }
 
 .item_bd_message {
-  font-size: 30rpx;
-  color: #505050;
+  font-size: 27rpx;
+  color: #707070;
   margin-top: 10rpx;
 }
