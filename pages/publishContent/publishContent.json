@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-      "loginModal": "../../component/loginPanel/login"
+      "dialogModal": "../../utils/dialogModal/dialogModal"
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",

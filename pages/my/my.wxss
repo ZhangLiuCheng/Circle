@@ -7,6 +7,25 @@
   position: relative;
 }
 
+.userInfo {
+  padding-left: 50rpx;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 120rpx;
+}
+
+.user-name {
+  font-size: 30rpx;
+  margin-left: 30rpx;
+}
+
 .kind-list-item {
   background-color: #fff;
   border-radius: 4rpx;
@@ -52,6 +71,7 @@
 }
 
 .navigator-arrow {
-  padding-right: 26rpx;
   position: relative;
+  width: 14rpx;
+  height: 26rpx;
 }

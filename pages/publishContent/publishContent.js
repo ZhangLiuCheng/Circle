@@ -1,31 +1,46 @@
 // pages/publish.js
 Page({
+  data: {
+    imageList: [],
+    countIndex: 8,
+    count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  },
+
+  onLoad: function (option) {
+    console.log(option.id);
+  },
+
+  onReady: function () {
+    this.dialogModal = this.selectComponent("#dialogModal");
+  },
 
   OnConfirm: function (e) {
     console.log("OnConfirm  " + e.detail.key + " --  " + e.detail.key2)
   },
 
-  /**
-   * 页面的初始OnConfirm数据
-   */
-  data: {
-    item: {
-      index: 0,
-      msg: 'this is a template',
-      time: '2016-09-15'
-    }
+  showCustonModal: function () {
+    this.dialogModal.showLogin()
   },
 
-  onLoad: function(option) {
-    console.log(option.id);
+  chooseImage: function () {
+    var that = this
+    wx.chooseImage({
+      sourceType: ['camera', 'album'],
+      sizeType: ['compressed', 'original'],
+      count: this.countIndex,
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          imageList: res.tempFilePaths
+        })
+      }
+    })
   },
-
-  onReady: function() {
-    this.loginModal = this.selectComponent("#loginModal");
-    // console.log("onReady  " + this.loginModal + this.data.is_modal_Msg)
-  },
-
-  showCustonModal: function() {
-    this.loginModal.showLogin()
+  previewImage: function (e) {
+    var current = e.target.dataset.src
+    wx.previewImage({
+      current: current,
+      urls: this.data.imageList
+    })
   }
 })

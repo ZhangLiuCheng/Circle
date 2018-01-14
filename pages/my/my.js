@@ -14,17 +14,18 @@ Component({
    * 组件的初始数据
    */
   data: {
+    avatarPath:'image/avatar_default.png',
     list: [
       {
         id: 'view',
-        name: '视图容器',
+        name: '信息',
         open: false,
-        pages: ['view', 'scroll-view', 'swiper']
+        pages: ['我的发布', '浏览记录']
       }, {
         id: 'content',
-        name: '基础内容',
+        name: '设置',
         open: false,
-        pages: ['text', 'icon', 'progress']
+        pages: ['系统消息', '清楚缓存', '关于']
       }
     ]
   },

@@ -1,9 +1,31 @@
-<loginModal id="loginModal" bind:sure="OnConfirm">
-  <view>
-    <text>我是slot</text>
-  </view>
-</loginModal>
+<view class='container'>
+  <dialogModal id="dialogModal" modalMsg="是否立即登录?" bind:sure="OnConfirm">
+  </dialogModal>
+  <input class='.title' auto-focus placeholder="请输入标题" maxlength='200' confirm-type='next'></input>
+  <textarea class='.content' auto-focus placeholder="请输入内容" maxlength='1024'></textarea>
 
-<view>
-  <button catchtap='showCustonModal'>显示弹窗</button>
+
+  <view class="image">
+
+    <view class='weui-uploader__hd'>
+      <view class="weui-uploader__title">点击可预览选好的图片</view>
+      <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
+    </view>
+
+    <view class="weui-uploader__bd">
+      <view class="weui-uploader__files">
+        <block wx:for="{{imageList}}" wx:for-item="image" wx:key="*image">
+          <view class="weui-uploader__file">
+            <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+          </view>
+        </block>
+      </view>
+      <view class="weui-uploader__input-box">
+        <view class="weui-uploader__input" bindtap="chooseImage">asf</view>
+      </view>
+    </view>
+  </view>
+
+  <button class='publish' catchtap='showCustonModal'>发布</button>
+
 </view>

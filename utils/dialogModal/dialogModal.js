@@ -1,4 +1,4 @@
-// component/loginPanel/login.js
+// util/dialogModal/dialogModal.js
 Component({
   /**
    * 组件的属性列表
