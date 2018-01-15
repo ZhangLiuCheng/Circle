@@ -2,10 +2,5 @@
   "usingComponents": {
       "dialogModal": "../../utils/dialogModal/dialogModal"
   },
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "发布",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light",
-  "enablePullDownRefresh": true
+  "navigationBarTitleText": "发布"
 }

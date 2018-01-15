@@ -7,6 +7,16 @@
   position: relative;
 }
 
+.scrollview {
+  width: 100%;
+  height: 100%;
+}
+
+.index-bd {
+  height: 100%;
+  padding-bottom: 100rpx;
+}
+
 .userInfo {
   padding-left: 50rpx;
   padding-bottom: 20rpx;

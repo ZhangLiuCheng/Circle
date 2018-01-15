@@ -1,27 +1,31 @@
 <!--pages/my/my.wxml-->
 <view class="container" hidden='{{modalHidden}}'>
 
-  <view class='userInfo'>
-    <image class="user-avatar" src="{{avatarPath}}"></image>
-    <text class='user-name'>张留成</text>
-  </view>
+  <scroll-view class='scrollview' scroll-y="true">
+    <view class='index-bd'>
+      <view class='userInfo'>
+        <image class="user-avatar" src="{{avatarPath}}"></image>
+        <text class='user-name'>张留成</text>
+      </view>
 
-  <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-    <view class="kind-list-item">
-      <view id="{{item.id}}" class="kind-list-item-hd">
-        <view>{{item.name}}</view>
-        <!-- <image class="kind-list-img" src="resources/kind/{{item.id}}.png"></image> -->
-      </view>
-      <view>
-        <view class="navigator-box">
-          <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
-            <navigator url="pages/{{page}}/{{page}}" class="navigator">
-              <view class="navigator-text">{{page}}</view>
-              <image class='navigator-arrow' src="image/arraw.png"></image>
-            </navigator>
-          </block>
+      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+        <view class="kind-list-item">
+          <view id="{{item.id}}" class="kind-list-item-hd">
+            <view>{{item.name}}</view>
+            <!-- <image class="kind-list-img" src="resources/kind/{{item.id}}.png"></image> -->
+          </view>
+          <view>
+            <view class="navigator-box">
+              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
+                <navigator url="pages/{{page}}/{{page}}" class="navigator">
+                  <view class="navigator-text">{{page}}</view>
+                  <image class='navigator-arrow' src="image/arraw.png"></image>
+                </navigator>
+              </block>
+            </view>
+          </view>
         </view>
-      </view>
+      </block>
     </view>
-  </block>
+  </scroll-view>
 </view>

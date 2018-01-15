@@ -30,6 +30,22 @@
   border-bottom: 1rpx solid #e0e0e0;
 }
 
+.item_bd_content {
+  display: flex;
+  flex-direction: row;
+}
+
+.item_bd_image_left {
+  width: 200rpx;
+  height: 130rpx;
+}
+
+.item_bd_title_message {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 20rpx;
+}
 .item_bd_title {
   font-size: 33rpx;
   color: #404040;
@@ -39,4 +55,24 @@
   font-size: 27rpx;
   color: #707070;
   margin-top: 10rpx;
+}
+
+
+.item_function_layout {
+  margin-top: 10rpx;
+  float: right
+}
+
+.item_hongbao {
+  width: 32rpx;
+  height: 32rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.item_share {
+  width: 32rpx;
+  height: 32rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }

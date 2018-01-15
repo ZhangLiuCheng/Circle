@@ -1,8 +1,8 @@
 <view class='container'>
   <dialogModal id="dialogModal" modalMsg="是否立即登录?" bind:sure="OnConfirm">
   </dialogModal>
-  <input class='.title' auto-focus placeholder="请输入标题" maxlength='200' confirm-type='next'></input>
-  <textarea class='.content' auto-focus placeholder="请输入内容" maxlength='1024'></textarea>
+  <input class='.title' placeholder="请输入标题" maxlength='200' confirm-type='next'></input>
+  <textarea class='.content' placeholder="请输入内容" maxlength='1024'></textarea>
 
 
   <view class="image">
@@ -13,7 +13,7 @@
     </view>
 
     <view class="weui-uploader__bd">
-      <view class="weui-uploader__files">
+      <view>
         <block wx:for="{{imageList}}" wx:for-item="image" wx:key="*image">
           <view class="weui-uploader__file">
             <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
@@ -21,7 +21,7 @@
         </block>
       </view>
       <view class="weui-uploader__input-box">
-        <view class="weui-uploader__input" bindtap="chooseImage">asf</view>
+        <view class="weui-uploader__input" bindtap="chooseImage"></view>
       </view>
     </view>
   </view>
