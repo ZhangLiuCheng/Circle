@@ -4,7 +4,8 @@
     "pages/detail/detail",
     "pages/publishContent/publishContent",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

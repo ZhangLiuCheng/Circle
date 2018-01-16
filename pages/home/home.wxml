@@ -1,5 +1,6 @@
 <!--pages/home/home.wxml-->
 <view class="container" hidden='{{modalHidden}}'>
+  <homeKindModal></homeKindModal>
   <scroll-view class='scrollView' scroll-y="true">
     <view class='index-bd'>
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">

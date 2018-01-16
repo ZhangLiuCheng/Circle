@@ -1,0 +1,18 @@
+<!--pages/homeKind/homeKind.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    <view class='swiper-tab-content'>
+      <text class='swiper-tab-content-txt'>附近</text>
+      <image class="arraw_image {{currentTab==0 ? 'arraw_image_on' : ''}}" src='image/arrow_down.png'></image>
+    </view>
+  </view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    <view class='swiper-tab-content'>
+      <text class='swiper-tab-content-txt'>热门</text>
+      <image class="arraw_image {{currentTab==1 ? 'arraw_image_on' : ''}}" src='image/arrow_down.png'></image>
+    </view>
+  </view>
+  <view class="search" catchtap='search'>
+    <image class='search_image' src='image/search_1.png'></image>
+  </view>
+</view>
