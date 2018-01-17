@@ -1,31 +1,63 @@
 // pages/homeKind/homeKind.js
 Component({
- 
+
   properties: {
 
   },
 
   data: {
+    open: false,
     currentTab: 0,
+    animOption: {},
+    animArrow: {},
   },
 
   methods: {
     swichNav: function (e) {
       var that = this;
-      if (this.data.currentTab === e.currentTarget.dataset.current) {
-        return false;
+      var curId = e.currentTarget.dataset.current;
+
+      if (this.data.currentTab == curId) {
+        console.log("curId " + curId + this.data.open)
+        var realOpen = this.data.open ? false : true;
+        that.setData({
+          open: realOpen
+        })
+
+        // 展示箭头动画
+        var animation = wx.createAnimation({
+          timingFunction: 'ease', duration: 500
+        })
+        if (realOpen) {
+          animation.rotate(180).step()
+        } else {
+          animation.rotate(0).step()
+        }
+        this.setData({
+          animArrow: animation.export()
+        })
       } else {
         that.setData({
-          currentTab: e.currentTarget.dataset.current
+          open: false,
+          currentTab: curId
+        })
+        // 重置箭头动画
+        var animation = wx.createAnimation({
+          duration: 500,
+          timingFunction: 'step-start',
+        })
+        animation.rotate(0).step()
+        this.setData({
+          animArrow: animation.export()
         })
       }
     },
 
-    search:function() {
+    search: function () {
       console.log("search")
       wx.navigateTo({
         url: '../search/search',
       })
-    }
+    },
   }
 })

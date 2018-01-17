@@ -1,10 +1,26 @@
 /* pages/homeKind/homeKind.wxss */
+.home_kind {
+  /* background: red; */
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+}
+
+.home_kind_open {
+   height: 100%; 
+}
+
 .swiper-tab {
   display: flex;
   width: 100%;
   height: 80rpx;
-  background-color: #f0f0f0;
-  overflow: hidden;
+  background-color: #fff;
+  /* border-top: 1rpx solid #f0f0f0; */
+  border-bottom: 2rpx solid #D0D0D0;
+  z-index: 1;
 }
 
 .swiper-tab-list {
@@ -13,7 +29,6 @@
 }
 
 .swiper-tab-content {
-  /* background-color: red;  */
   width: auto;
   height: auto;
   display: inline-flex; 
@@ -40,6 +55,7 @@
 
 .arraw_image_on {
   opacity: 1;
+  transform: rotate(0deg)
 }
 
 .on {
@@ -66,4 +82,48 @@
   left: 50%;
   position: relative;
   transform: translate(-50%, -50%);
+}
+
+.content {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: none; 
+}
+
+.content_open {
+  display: flex; 
+  flex-direction: column;
+}
+
+.option {
+  width: 100%;
+  height: auto;
+  background-color: #FEFEFE;
+}
+
+.option-layout {
+  padding-bottom: 60rpx;
+  padding-top: 60rpx;
+  width: 90%;
+  height: 20%;
+  position: relative;
+  margin-left: 5%;
+  display: grid;
+  grid-template-columns: 150rpx 150rpx 150rpx;   
+  grid-gap: 1rem;
+  align-items: center;
+  justify-content: space-around; 
+}
+
+.option-item-txt {
+  font-size: 28rpx;
+  color: #da7c0c;
+  background-color: #eeeeee;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 70rpx;
+  line-height: 70rpx; 
+  border-radius: 10rpx;
+  text-align: center;
 }
