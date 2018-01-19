@@ -18,7 +18,7 @@
     </view>
   </view>
 
-  <view class="content {{open ? 'content_open' : ''}}">
+  <view class="content {{open ? 'content_open' : ''}}" catchtap='touchPanel'>
     <view class='option' animation='{{animOption}}'>
        <view class='option-layout'>
         <text class='option-item-txt'>分类1</text>

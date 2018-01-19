@@ -122,3 +122,8 @@
   height: 100%;
   opacity: 0;
 }
+
+.address {
+  font-size: 30rpx;
+  padding: 20rpx;
+}

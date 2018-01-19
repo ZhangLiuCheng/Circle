@@ -26,6 +26,10 @@
     </view>
   </view>
 
+  <view class='address'>
+    <text catchtap='address'>位置</text>
+  </view>
+
   <button class='publish' catchtap='showCustonModal'>发布</button>
 
 </view>

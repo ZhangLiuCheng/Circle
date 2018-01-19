@@ -18,7 +18,6 @@ Component({
       var curId = e.currentTarget.dataset.current;
 
       if (this.data.currentTab == curId) {
-        console.log("curId " + curId + this.data.open)
         var realOpen = this.data.open ? false : true;
         that.setData({
           open: realOpen
@@ -37,20 +36,31 @@ Component({
           animArrow: animation.export()
         })
       } else {
-        that.setData({
-          open: false,
-          currentTab: curId
-        })
-        // 重置箭头动画
-        var animation = wx.createAnimation({
-          duration: 500,
-          timingFunction: 'step-start',
-        })
-        animation.rotate(0).step()
-        this.setData({
-          animArrow: animation.export()
-        })
+        this.closePanel(curId);
       }
+    },
+
+    // 关闭选择标签
+    closePanel: function(curId) {
+      console.log("curId: " + curId)
+      this.setData({
+        open: false,
+        currentTab: curId
+      })
+      // 重置箭头动画
+      var animation = wx.createAnimation({
+        duration: 500,
+        timingFunction: 'step-start',
+      })
+      animation.rotate(0).step()
+      this.setData({
+        animArrow: animation.export()
+      })
+    },
+
+    // 点击空白的地方
+    touchPanel:function() {
+      this.closePanel(this.data.currentTab)
     },
 
     search: function () {

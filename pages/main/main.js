@@ -8,7 +8,15 @@ Page({
   onLoad: function (options) {
     
   },
-  
+
+  onShareAppMessage: function () {
+      return {
+        title: "TestTitle",
+        desc: "TestMessage",
+        path: 'pages/main/main'
+      }
+  },
+
   onReady: function () {
     this.homeModal = this.selectComponent("#homeModal");
     this.myModal = this.selectComponent("#myModal");
