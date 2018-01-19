@@ -3,7 +3,6 @@
     "pages/main/main",
     "pages/detail/detail",
     "pages/publishContent/publishContent",
-    "pages/index/index",
     "pages/search/search"
   ],
   "window": {
