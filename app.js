@@ -12,19 +12,33 @@ App({
         var code = res.code;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
-          url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx1d8abcecdf5c0f0a&secret=f3aa52ec09d9b50bda9b52d405bb282a&js_code=' + code + '&grant_type=' + code,
+          url: 'http://192.168.94.206:8080/quanzi/user/loginWXApplet?code=' + code,
           data: {},
           header: {
             'content-type': 'application/json'
           },
           success: function (res) {
             var openid = res.data.openid
+            console.log(res)
             console.log("opengid: " + openid)
+
+            // wx.showToast({
+            //   title: '获取opengId成功',
+            //   icon: 'none',
+            //   duration: 1500
+            // })
           },
           fail: function () {
             console.log("获取opengId失败")
+
+            // wx.showToast({
+            //   title: '获取opengId失败',
+            //   icon: 'none',
+            //   duration: 1500
+            // })
           }
         })
+        
       }
     })
 

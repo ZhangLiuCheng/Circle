@@ -15,8 +15,16 @@
           </view>
 
           <text class="item_bd_title">{{item.message}}</text>
-          <image class='item_bd_image_one' src='{{item.imageUrl}}' lazy-load='true' mode='aspectFill'></image>
+          <!-- 样式1 只有一张图片  -->
+          <image wx:if='{{item.type == 1}}' class='item_bd_image_one' src='{{item.imageUrls[0]}}' lazy-load='true' mode='aspectFill'></image>
 
+          <!-- 样式2 多张张图片  -->
+          <view wx:elif='{{item.type == 2}}' class='item_bd_images'>
+            <block wx:for-items="{{item.imageUrls}}" wx:for-item="imageUrl" wx:key="*item">
+              <image class='item_bd_image_more' src='{{imageUrl}}' lazy-load='true' mode='aspectFill'></image>
+            </block>
+
+          </view>
 
           <view class='item_function'>
             <view class='item_function_content' data-item='{{item}}' catchtap='share'>

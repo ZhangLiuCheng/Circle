@@ -81,6 +81,20 @@
   /* height: auto; */
 }
 
+/* 多张图片样式  */
+.item_bd_images {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.item_bd_image_more {
+  width: 45%;
+  height: 300rpx;
+  margin-right: 20rpx;
+}
+
 .item_bd_title {
   font-size: 33rpx;
   color: #404040;
