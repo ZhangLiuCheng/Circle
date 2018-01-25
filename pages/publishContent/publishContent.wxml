@@ -1,7 +1,7 @@
 <view class='container'>
   <dialogModal id="dialogModal" modalMsg="是否立即登录?" bind:sure="OnConfirm">
   </dialogModal>
-  <input class='.title' placeholder="请输入标题" maxlength='200' confirm-type='next'></input>
+
   <textarea class='.content' placeholder="请输入内容" maxlength='1024'></textarea>
 
 
@@ -27,7 +27,8 @@
   </view>
 
   <view class='address'>
-    <text catchtap='address'>位置</text>
+    <image class='address_icon' src='image/icon_address.png'></image>
+    <text class='address_name' catchtap='address'>{{addressName}}</text>
   </view>
 
   <button class='publish' catchtap='showCustonModal'>发布</button>

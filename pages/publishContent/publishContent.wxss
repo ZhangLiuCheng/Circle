@@ -8,13 +8,6 @@
   position: relative;
 }
 
-.title {
-  padding: 20rpx;
-  margin: 20rpx;
-  border: 1rpx solid #d0d0d0;
-  font-size: 35rpx;
-}
-
 .image {
   width: auto;
   padding: 20rpx;
@@ -31,11 +24,6 @@
   height: 200rpx;
   border: 1rpx solid #d0d0d0;
   font-size: 33rpx;
-}
-
-.publish {
-  margin: 20rpx;
-  height: auto;
 }
 
 .weui-uploader__hd {
@@ -124,6 +112,27 @@
 }
 
 .address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.address_icon {
+  margin-left: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.address_name {
   font-size: 30rpx;
-  padding: 20rpx;
+  padding-left: 10rpx;
+  color: #707070
+}
+
+.publish {
+  margin-top: 100rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  height: auto;
 }

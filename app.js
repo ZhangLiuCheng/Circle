@@ -39,17 +39,17 @@ App({
           success: res => {
             if (res.authSetting['scope.userInfo'] == false) {
               console.log("拒绝授权")
-              wx.openSetting({
-                success: (res) => {
-                  console.log("openSetting: " + res.authSetting['scope.userInfo'])
-                  wx.getUserInfo({
-                    success: res => {
-                      // that.globalData.userInfo = res.userInfo
-                      console.log("获取用户信息成功")
-                    }
-                  })
-                }
-              })
+              // wx.openSetting({
+              //   success: (res) => {
+              //     console.log("openSetting: " + res.authSetting['scope.userInfo'])
+              //     wx.getUserInfo({
+              //       success: res => {
+              //         // that.globalData.userInfo = res.userInfo
+              //         console.log("获取用户信息成功")
+              //       }
+              //     })
+              //   }
+              // })
             }
           }
         })
