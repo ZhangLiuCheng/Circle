@@ -14,66 +14,86 @@ Component({
         id:1,
         message:"周围停车场太黑了,一个小时七元,有图有真相！！！",
         imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "image/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        type:2
+        showImageUrls: [],
       },
 
       {
         id: 2,
         message: "李小奴与贾乃亮内幕,撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
         imageUrls: ["image/test.png"],
-        type: 0
+        showImageUrls: [],
       },
 
       {
         id:3,
-        message: "xxx网络公司太坑爹了.里面太黑暗，无法语言描述",
-        imageUrls: [],
-        type: 0
+        message: "xxx网络公司太坑爹了.里面太黑暗，无法语言描述,阿斯顿发好了阿斯顿发回来看阿瑟费去玩儿去玩儿阿斯顿发的方式阿斯顿发圈儿去玩儿阿斯顿发送到发送地方2请问日 u 去哦譬如破 iu 片【额外肉 i 去哦玩儿",
+        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "image/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "image/test.png", "image/test.png"],
+        showImageUrls: [],
       },
       {
-        id: 1,
+        id: 4,
         message: "周围停车场太黑了,一个小时七元",
         imageUrls: ["image/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        type: 2
+        showImageUrls: [],
       },
 
       {
-        id: 2,
+        id: 5,
         message: "撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
         imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        type: 1
+        showImageUrls: [],
       },
 
       {
-        id: 3,
-        title: "xxx网络公司太坑爹了",
-        message: "里面太黑暗，无法语言描述",
-        type: 0
+        id: 6,
+        message: "据韩国庆尚南道密阳消防署26日介绍，报警者称，当天在密阳世宗医院发生的火灾源于1层的急诊室。截至当天上午11时，火灾已造成百余人伤亡。遇难者主要被发现在1、2层。消防部门正在现场进行搜救工作。",
+        imageUrls: [],
+        showImageUrls: [],
       },
       {
-        id: 1,
-        title: "周围停车场太黑了",
-        message: "一个小时七元",
+        id: 7,
+        message: "一个小时七元,太几把贵了啊，擦擦擦",
         imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "image/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "image/test.png"],
-        type: 2
+        showImageUrls: [],
       },
 
       {
-        id: 2,
-        title: "李小奴与贾乃亮内幕",
-        message: "撒发送到发送地方撒发送到发asdfasdfasdfasd阿斯顿发送地方送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        type: 0
+        id: 8,
+        message: "李小奴与贾乃亮内幕撒发送到发送地方撒发送到发asdfasdfasdfasd阿斯顿发送地方送地方撒发送发送地方撒发送发送分撒发送到发送分",
+        imageUrls: [],
+        showImageUrls: [],
       },
-
-      {
-        id: 3,
-        title: "xxx网络公司太坑爹了",
-        message: "里面太黑暗，无法语言描述",
-        imageUrls: ["image/test.png"],
-        type: 1
-      }
     ]
   },
+
+  created: function() {
+    console.log('created')
+  },
+
+  attached: function () {
+    console.log('attached')
+    var listData = this.data.list;
+    for (var i  = 0; i < listData.length; i ++) {
+        var item = listData[i]
+        var imageSize = item.imageUrls.length
+        if (imageSize < 3) {
+          item.type = imageSize;
+        } else if (imageSize == 3) {
+          item.type = 2;
+        } else if (imageSize > 3) {
+          item.type = 4;
+        }
+        // 拷贝图片地址
+        for (var j = 0; j < item.type; j ++) {
+          item.showImageUrls[j] = item.imageUrls[j]
+        }
+        console.log(item.type)
+    }
+    this.setData({
+      list: listData
+    })
+  },
+  
 
   /**
    * 组件的方法列表
