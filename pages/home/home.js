@@ -87,7 +87,6 @@ Component({
         for (var j = 0; j < item.type; j ++) {
           item.showImageUrls[j] = item.imageUrls[j]
         }
-        console.log(item.type)
     }
     this.setData({
       list: listData

@@ -4,7 +4,7 @@
   <scroll-view class='scrollView' scroll-y="true">
     <view class='index-bd'>
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-        <navigator class="item_bd" url='../detail/detail'>
+        <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>
           <view class='user_info'>
             <image class="user_info_avatar" src="image/avatar_default.png"></image>
             <view class='user_info_name_address'>
