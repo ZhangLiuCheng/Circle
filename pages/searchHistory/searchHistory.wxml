@@ -1,0 +1,24 @@
+<!--pages/searchHistory/searchHistory.wxml-->
+
+<view class="home_kind {{open ? 'home_kind_open' : ''}}">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+      <view class='swiper-tab-content'>
+        <text class='swiper-tab-content-txt'>搜索</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="content {{open ? 'content_open' : ''}}" catchtap='touchPanel'>
+    <view class='option'>
+       <view class='option-layout'>
+        <text class='option-item-txt'>分类1</text>
+        <text class='option-item-txt'>分类2</text>
+        <text class='option-item-txt'>分类3</text>
+        <text class='option-item-txt'>分类4</text>
+        <text class='option-item-txt'>分类5</text>
+      </view> 
+    </view>
+  </view>
+
+</view>

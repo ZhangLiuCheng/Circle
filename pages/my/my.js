@@ -14,7 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    avatarPath:'image/avatar_default.png',
+    avatarPath:'/images/avatar_default.png',
     list: [
       {
         id: 'view',

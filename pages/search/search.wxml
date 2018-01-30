@@ -1,13 +1,29 @@
 <!--pages/search/search.wxml-->
 
-<import src="../../libs/wxSearch/wxSearch.wxml"/>
+<searchHistoryModal></searchHistoryModal>
 
-<view class="wxSearch-section">
-  <view class="wxSearch-pancel">
-    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜索" />
-    <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
+<scroll-view class='scrollView' scroll-y="true">
+  <view class='index-bd'>
+    <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+      <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>
+
+        <text class="item_bd_title">{{item.message}}</text>
+
+        <view class='item_function'>
+          <view class='item_function_content' data-item='{{item}}' catchtap='share'>
+            <image class='item_share' src='/images/icon_repost.png'></image>
+            <text class='item_function_txt'>243</text>
+          </view>
+          <view class='item_function_content' data-item='{{item}}' catchtap='commet'>
+            <image class='item_share' src='/images/icon_comment.png'></image>
+            <text class='item_function_txt'>敬请期待</text>
+          </view>
+          <view class='item_function_content' data-item='{{item}}' catchtap='like'>
+            <image class='item_share' src='/images/icon_like.png'></image>
+            <text class=' item_function_txt'>1.2万</text>
+          </view>
+        </view>
+      </navigator>
+    </block>
   </view>
-</view>
-<template is="wxSearch" data="{{wxSearchData}}"/>
-
-<text style='background-color:red; width=100%; height=100%;'>这个页面可以搜索具体内容</text>
+</scroll-view>

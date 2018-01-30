@@ -6,7 +6,7 @@
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
         <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>
           <view class='user_info'>
-            <image class="user_info_avatar" src="image/avatar_default.png"></image>
+            <image class="user_info_avatar" src="/images/avatar_default.png"></image>
             <view class='user_info_name_address'>
               <text class='user_info_name'>zhangsan</text>
               <text class='user_info_address'>位置:上海市浦东新区</text>
@@ -28,15 +28,15 @@
 
           <view class='item_function'>
             <view class='item_function_content' data-item='{{item}}' catchtap='share'>
-              <image class='item_share' src='image/icon_repost.png'></image>
+              <image class='item_share' src='/images/icon_repost.png'></image>
               <text class='item_function_txt'>243</text>
             </view>
             <view class='item_function_content' data-item='{{item}}' catchtap='commet'>
-              <image class='item_share' src='image/icon_comment.png'></image>
+              <image class='item_share' src='/images/icon_comment.png'></image>
               <text class='item_function_txt'>敬请期待</text>
             </view>
             <view class='item_function_content' data-item='{{item}}' catchtap='like'>
-              <image class='item_share' src='image/icon_like.png'></image>
+              <image class='item_share' src='/images/icon_like.png'></image>
               <text class=' item_function_txt'>1.2万</text>
             </view>
           </view>

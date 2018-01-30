@@ -27,7 +27,7 @@
   </view>
 
   <view class='address'>
-    <image class='address_icon' src='image/icon_address.png'></image>
+    <image class='address_icon' src='/images/icon_address.png'></image>
     <text class='address_name' catchtap='address'>{{addressName}}</text>
   </view>
 

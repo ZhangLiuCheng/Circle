@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-  },
+        "searchHistoryModal": "../searchHistory/searchHistory"  },
   "navigationBarTitleText": "搜索"
 }

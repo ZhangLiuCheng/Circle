@@ -19,7 +19,7 @@
               <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
                 <navigator url="pages/{{page}}/{{page}}" class="navigator">
                   <view class="navigator-text">{{page}}</view>
-                  <image class='navigator-arrow' src="image/arraw.png"></image>
+                  <image class='navigator-arrow' src="/images/arraw.png"></image>
                 </navigator>
               </block>
             </view>
