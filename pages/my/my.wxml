@@ -2,30 +2,39 @@
 <view class="container" hidden='{{modalHidden}}'>
 
   <scroll-view class='scrollview' scroll-y="true">
-    <view class='index-bd'>
-      <view class='userInfo'>
-        <image class="user-avatar" src="{{avatarPath}}"></image>
-        <text class='user-name'>张留成</text>
+    <view class='userInfo' catchtap='userInfo'>
+      <image class="user-avatar" src="{{avatarPath}}"></image>
+      <text class='user-name'>张留成</text>
+      <image class='navigator-arrow' src="/images/arraw.png"></image>
+    </view>
+
+    <view class="navigator">
+      <view class='navigator-box'>
+        <image class='navigator-icon' src="/images/icon_publish.png"></image>
+        <view class="navigator-text">我的发布</view>
+        <image class='navigator-arrow' src="/images/arraw.png"></image>
       </view>
 
-      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-        <view class="kind-list-item">
-          <view id="{{item.id}}" class="kind-list-item-hd">
-            <view>{{item.name}}</view>
-            <!-- <image class="kind-list-img" src="resources/kind/{{item.id}}.png"></image> -->
-          </view>
-          <view>
-            <view class="navigator-box">
-              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
-                <navigator url="pages/{{page}}/{{page}}" class="navigator">
-                  <view class="navigator-text">{{page}}</view>
-                  <image class='navigator-arrow' src="/images/arraw.png"></image>
-                </navigator>
-              </block>
-            </view>
-          </view>
-        </view>
-      </block>
+      <view class='navigator-box'>
+        <image class='navigator-icon' src="/images/icon_like_2.png"></image>
+        <view class="navigator-text">我的喜欢</view>
+        <image class='navigator-arrow' src="/images/arraw.png"></image>
+      </view>
+    </view>
+
+
+    <view class="navigator" catchtap='advise'>
+      <view class='navigator-box'>
+        <image class='navigator-icon' src="/images/icon_suggest.png"></image>
+        <view class="navigator-text">投诉建议</view>
+        <image class='navigator-arrow' src="/images/arraw.png"></image>
+      </view>
+
+      <view class='navigator-box' catchtap='aboutUs'>
+        <image class='navigator-icon' src="/images/icon_about.png"></image>
+        <view class="navigator-text">关于我们</view>
+        <image class='navigator-arrow' src="/images/arraw.png"></image>
+      </view>
     </view>
   </scroll-view>
 </view>

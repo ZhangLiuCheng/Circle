@@ -46,12 +46,12 @@
 }
 
 .user_info_name {
-  font-size: 33rpx;
+  font-size: 31rpx;
   color: #da7c0c;
 }
 
 .user_info_address {
-  font-size: 26rpx;
+  font-size: 22rpx;
   color: #aaaaaa;
   margin-top: 5rpx;
 }
@@ -76,9 +76,7 @@
 .item_bd_image_one {
   margin-top: 20rpx;
   width: 100%;
-  height: 300rpx; 
-  /* height: 300rpx; */
-  /* height: auto; */
+  height: 258rpx; 
   border-radius: 10rpx;
   border: 5rpx solid #E0E0E0;
 }
@@ -93,14 +91,14 @@
 .item_bd_image_more {
   margin-top: 20rpx;
   width: 45%;
-  height: 300rpx;
+  height: 258rpx;
   margin-right: 20rpx;
   border-radius: 10rpx;
   border: 5rpx solid #E0E0E0;
 }
 
 .item_bd_title {
-  font-size: 33rpx;
+  font-size: 30rpx;
   color: #404040;
   margin-top: 20rpx;
 }

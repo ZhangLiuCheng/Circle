@@ -27,6 +27,10 @@ Page({
     })
   },
 
+  onReachBottom: function () {
+    console.log('onReachBottom')
+  },
+
   tabIndex:function(e) {
     this.homeModal.hiddenModal();
     this.myModal.hiddenModal();

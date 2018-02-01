@@ -3,7 +3,10 @@
     "pages/main/main",
     "pages/detail/detail",
     "pages/publishContent/publishContent",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/userInfo/userInfo",
+    "pages/aboutUs/aboutUs",
+    "pages/advise/advise"
   ],
   "window": {
     "backgroundTextStyle": "light",

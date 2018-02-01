@@ -110,6 +110,10 @@ Component({
       })
     },
 
+    scrollToBottom: function(res) {
+      console.log(res)
+    },
+
     report: function(res) {
       console.log(res.currentTarget.dataset.item)
       wx.showActionSheet({

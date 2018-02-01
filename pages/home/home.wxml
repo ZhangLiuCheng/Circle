@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <view class="container" hidden='{{modalHidden}}'>
   <homeKindModal></homeKindModal>
-  <scroll-view class='scrollView' scroll-y="true">
+  <scroll-view class='scrollView' scroll-y="true" enable-back-to-top='true' bindscrolltolower='scrollToBottom'>
     <view class='index-bd'>
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
         <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>
