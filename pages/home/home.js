@@ -127,6 +127,12 @@ Component({
       })
     },
 
+    onKindChange: function (res) {
+      var parentId = res.detail.parentId
+      var childId = res.detail.childId
+      console.log(parentId + ' --- ' + childId)
+    },
+
     /*
     // 分享
     share: function (res) {

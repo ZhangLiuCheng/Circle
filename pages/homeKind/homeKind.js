@@ -36,13 +36,13 @@ Component({
           animArrow: animation.export()
         })
       } else {
+        this.tiggerKindChange(curId, 0)
         this.closePanel(curId);
       }
     },
 
     // 关闭选择标签
     closePanel: function(curId) {
-      console.log("curId: " + curId)
       this.setData({
         open: false,
         currentTab: curId
@@ -64,10 +64,19 @@ Component({
     },
 
     search: function () {
-      console.log("search")
       wx.navigateTo({
         url: '../search/search',
       })
     },
+
+    catchKind: function (e) {
+      console.log(e.currentTarget.dataset.kind)
+      this.tiggerKindChange(this.data.currentTab, e.currentTarget.dataset.kind)
+      this.closePanel(this.data.currentTab)
+    },
+
+    tiggerKindChange: function (parentId, childId) {
+      this.triggerEvent('kindChange', { parentId: parentId, childId: childId })
+    }
   }
 })
