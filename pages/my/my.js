@@ -32,6 +32,20 @@ Component({
       })
     },
 
+    // 我的发布
+    myPublish: function () {
+      wx.navigateTo({
+        url: '../myPublish/myPublish',
+      })
+    },
+
+    // 我的喜欢
+    myLike: function () {
+      wx.navigateTo({
+        url: '../myLike/myLike',
+      })
+    },
+
     // 关于我们
     aboutUs: function () {
       wx.navigateTo({

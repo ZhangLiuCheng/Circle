@@ -44,7 +44,7 @@ Page({
           addressName = "解析失败，请重新选择地址"
         }
         that.setData({
-          addressName: addressName + '(点击切换)',
+          addressName: addressName,
           latitude: res.latitude,
           longitude: res.longitude
         })
@@ -81,7 +81,7 @@ Page({
       },
       fail: function (res) {
         that.setData({
-          addressName: "标示地址更易被用户查看(点击设置)"
+          addressName: "设置地址"
         })
       }
     })
@@ -100,7 +100,7 @@ Page({
         console.log("解码后：")
         console.log(res)
         that.setData({
-          addressName: res.result.address + '(点击切换)',
+          addressName: res.result.address,
           latitude: res.result.location.lat,
           longitude: res.result.location.lng
         })

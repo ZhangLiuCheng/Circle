@@ -1,5 +1,9 @@
 /* pages/publish.wxss */
 
+page {
+  background-color: #f0f0f0;
+}
+
 .container {
   width: 100%;
   height: 100%;
@@ -8,21 +12,25 @@
   position: relative;
 }
 
-.image {
-  width: auto;
-  padding: 20rpx;
-  margin: 20rpx;
-  height: auto;
-  border: 1rpx solid #d0d0d0;
-  font-size: 33rpx;
+.content {
+  width: 94%;
+  height: 158rpx;
+  padding: 3%;
+  background-color: #fff;
+  margin-top: 30rpx;
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+  font-size: 30rpx;
 }
 
-.content {
+.image {
+  margin-top: 30rpx;
   width: auto;
   padding: 20rpx;
-  margin: 20rpx;
-  height: 200rpx;
-  border: 1rpx solid #d0d0d0;
+  height: auto;
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+  background-color: #fff;
   font-size: 33rpx;
 }
 
@@ -39,6 +47,7 @@
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
+  font-size: 30rpx;
 }
 .weui-uploader__info {
   color: #B2B2B2;
@@ -111,15 +120,30 @@
   opacity: 0;
 }
 
+.function {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  margin-top: 30rpx;
+  background: #fff;
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.navigator-arrow {
+  position: relative;
+  width: 14rpx;
+  height: 26rpx;
+  margin-left: 20rpx;
+}
+
 .address {
+  height: 90rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 20rpx;
 }
 
 .address_icon {
-  margin-left: 20rpx;
   width: 40rpx;
   height: 40rpx;
 }
@@ -127,12 +151,34 @@
 .address_name {
   font-size: 30rpx;
   padding-left: 10rpx;
-  color: #707070
+  color: #333;
+  flex: 1;
+}
+
+.niming {
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1rpx solid #e0e0e0;
+}
+
+.niming-name {
+  font-size: 30rpx;
+  color: #333;
+  flex: 1;
+  padding-left: 10rpx;
+}
+
+.niming-switch {
+  color: #707070;
 }
 
 .publish {
-  margin-top: 100rpx;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  margin-top: 60rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-bottom: 30rpx;
   height: auto;
+  background-color: #fff;
 }

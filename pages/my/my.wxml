@@ -8,14 +8,14 @@
       <image class='navigator-arrow' src="/images/arraw.png"></image>
     </view>
 
-    <view class="navigator">
+    <view class="navigator" catchtap='myPublish'>
       <view class='navigator-box'>
         <image class='navigator-icon' src="/images/icon_publish.png"></image>
         <view class="navigator-text">我的发布</view>
         <image class='navigator-arrow' src="/images/arraw.png"></image>
       </view>
 
-      <view class='navigator-box'>
+      <view class='navigator-box' catchtap='myLike'>
         <image class='navigator-icon' src="/images/icon_like_2.png"></image>
         <view class="navigator-text">我的喜欢</view>
         <image class='navigator-arrow' src="/images/arraw.png"></image>

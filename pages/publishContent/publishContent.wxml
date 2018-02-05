@@ -2,8 +2,7 @@
   <dialogModal id="dialogModal" modalMsg="是否立即登录?" bind:sure="OnConfirm">
   </dialogModal>
 
-  <textarea class='.content' placeholder="请输入内容" maxlength='1024'></textarea>
-
+  <textarea class='.content' placeholder="请输入内容（必填）" maxlength='1024'></textarea>
 
   <view class="image">
 
@@ -26,9 +25,18 @@
     </view>
   </view>
 
-  <view class='address'>
-    <image class='address_icon' src='/images/icon_address.png'></image>
-    <text class='address_name' catchtap='address'>{{addressName}}</text>
+  <view class='function'>
+    <view class='address'>
+      <image class='address_icon' src='/images/icon_address.png'></image>
+      <text class='address_name' catchtap='address'>{{addressName}}</text>
+      <image class='navigator-arrow' src="/images/arraw.png"></image>
+    </view>
+
+    <view class='niming'>
+      <image class='address_icon' src='/images/icon_niming.png'></image>
+      <text class='niming-name'>匿名发布</text>
+      <switch class='niming-switch' bindchange="switch2Change" />
+    </view>
   </view>
 
   <button class='publish' catchtap='showCustonModal'>发布</button>

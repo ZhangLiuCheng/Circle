@@ -1,18 +1,14 @@
-// pages/home/home.js
-Component({
-  
-  properties: {
-    modalHidden: {
-      type: Boolean,
-      value: true
-    }
-  },
+// pages/myLike/myLike.js
+Page({
 
+  /**
+   * 页面的初始数据
+   */
   data: {
     list: [
       {
-        id:1,
-        message:"周围停车场太黑了,一个小时七元,有图有真相！！！",
+        id: 1,
+        message: "周围停车场太黑了,一个小时七元,有图有真相！！！",
         imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg"],
         showImageUrls: [],
       },
@@ -25,7 +21,7 @@ Component({
       },
 
       {
-        id:3,
+        id: 3,
         message: "xxx网络公司太坑爹了.里面太黑暗，无法语言描述,阿斯顿发好了阿斯顿发回来看阿瑟费去玩儿去玩儿阿斯顿发的方式阿斯顿发圈儿去玩儿阿斯顿发送到发送地方2请问日 u 去哦譬如破 iu 片【额外肉 i 去哦玩儿",
         imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
         showImageUrls: [],
@@ -66,90 +62,75 @@ Component({
     ]
   },
 
-  created: function() {
-    console.log('created')
-  },
-
-  attached: function () {
-    console.log('attached')
+  onLoad: function () {
+    console.log('onLoad')
     var listData = this.data.list;
-    for (var i  = 0; i < listData.length; i ++) {
-        var item = listData[i]
-        var imageSize = item.imageUrls.length
-        if (imageSize < 3) {
-          item.type = imageSize;
-        } else if (imageSize == 3) {
-          item.type = 2;
-        } else if (imageSize > 3) {
-          item.type = 4;
-        }
-        // 拷贝图片地址
-        for (var j = 0; j < item.type; j ++) {
-          item.showImageUrls[j] = item.imageUrls[j]
-        }
+    for (var i = 0; i < listData.length; i++) {
+      var item = listData[i]
+      var imageSize = item.imageUrls.length
+      if (imageSize < 3) {
+        item.type = imageSize;
+      } else if (imageSize == 3) {
+        item.type = 2;
+      } else if (imageSize > 3) {
+        item.type = 4;
+      }
+      // 拷贝图片地址
+      for (var j = 0; j < item.type; j++) {
+        item.showImageUrls[j] = item.imageUrls[j]
+      }
     }
     this.setData({
       list: listData
     })
   },
-  
 
   /**
-   * 组件的方法列表
+   * 生命周期函数--监听页面初次渲染完成
    */
-  methods: {
-    showModal: function () {
-      this.setData({
-        modalHidden: false
-      })
-    },
+  onReady: function () {
+  
+  },
 
-    hiddenModal: function () {
-      this.setData({
-        modalHidden: true
-      })
-    },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
+  },
 
-    scrollToBottom: function(res) {
-      console.log(res)
-    },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
 
-    report: function(res) {
-      console.log(res.currentTarget.dataset.item)
-      wx.showActionSheet({
-        itemList: ['信息不真实', '恶意重伤', '其他'],
-        success: function (res) {
-          console.log(res.tapIndex)
-        },
-        fail: function (res) {
-          console.log(res.errMsg)
-        }
-      })
-    },
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
 
-    /*
-    // 分享
-    share: function (res) {
-      console.log(res.currentTarget.dataset.item)
-      wx.showShareMenu({
-        withShareTicket: true
-      })
-    },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
 
-    // 评论
-    commet:function(res) {
-      console.log(res.currentTarget.dataset.item)
-      wx.showToast({
-        title: '敬请期待',
-        icon: 'none',
-        duration: 1500
-      })
-    },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
 
-    // 点赞
-    like: function (res) {
-      console.log(res.currentTarget.dataset.item)
-    },
-    */
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
   }
 })

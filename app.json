@@ -6,7 +6,9 @@
     "pages/search/search",
     "pages/userInfo/userInfo",
     "pages/aboutUs/aboutUs",
-    "pages/advise/advise"
+    "pages/advise/advise",
+    "pages/myLike/myLike",
+    "pages/myPublish/myPublish"
   ],
   "window": {
     "backgroundTextStyle": "light",

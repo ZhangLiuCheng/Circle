@@ -1,2 +1,7 @@
 <!--pages/advise/advise.wxml-->
-<text>投诉建议</text>
+
+<view class='container'>
+  <textarea class='content' placeholder="问题描述（必填）" maxlength='1024'></textarea>
+  <input class='contact' placeholder='qq或者微信号（非必填）'></input>
+  <button class='saveInfoBtn'>保存</button>
+</view>
