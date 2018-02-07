@@ -1,4 +1,7 @@
 //app.js
+
+var constants = require('utils/constants.js')
+
 App({
   globalData: {
     userInfo: null
@@ -12,7 +15,7 @@ App({
         var code = res.code;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
-          url: 'http://192.168.1.104:8080/quanzi/user/loginWXApplet?code=' + code,
+          url: constants.loginUrl + '?code=' + code,
           data: {},
           header: {
             'content-type': 'application/json'
