@@ -1,0 +1,10 @@
+<!--pages/empty/empty.wxml-->
+<view class='empty' hidden='{{modalHidden}}'>
+  <view class='empty-layout' style='margin-top: {{modalTop}}rpx;margin-bottom: {{modalBottom}}rpx;'>
+  
+    <image class='empty-layout-image' src='/images/empty.png'></image>
+
+    <text class='empty-layout-text'>{{modalMessage}}</text>
+  
+  </view>
+</view>

@@ -1,7 +1,9 @@
 <!--pages/home/home.wxml-->
 <view class="container" hidden='{{modalHidden}}'>
   <homeKindModal bind:kindChange="onKindChange"></homeKindModal>
-  <scroll-view class='scrollView' scroll-y="true" enable-back-to-top='true' bindscrolltolower='scrollToBottom'>
+  <emptyModal modal-hidden='{{emptyHidden}}' modal-top='80' modal-bottom='100' modal-message='暂无数据，请查看其他分类'></emptyModal>
+
+  <scroll-view class='scrollView' scroll-y="true" bindscrolltolower='scrollToBottom' bindscrolltoupper='scrollToTop'>
     <view class='index-bd'>
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
         <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>

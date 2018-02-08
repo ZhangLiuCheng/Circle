@@ -5,5 +5,10 @@ module.exports = {
    * method:get
    * params:code
    */
-  loginUrl: host + 'quanzi/user/loginWXApplet'
+  loginUrl: host + 'quanzi/user/loginWXApplet',
+
+  /**
+   * 
+   */
+  newsListUrl: host + 'quanzi/news/list'
 }

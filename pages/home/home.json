@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "homeKindModal": "../homeKind/homeKind"
+    "homeKindModal": "../homeKind/homeKind",
+    "emptyModal" : "../empty/empty"
   }
 }

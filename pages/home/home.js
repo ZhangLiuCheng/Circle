@@ -1,6 +1,36 @@
 // pages/home/home.js
+var util = require('../../utils/util.js')
+
+var requestNewsList = function (that, parentId, childId) {
+  console.log(parentId + " -- " + childId)
+  wx.showLoading({
+    title: '加载中',
+  })
+  wx.request({
+    url: 'http://192.168.95.184:8080/newsList.json',
+    data: {
+      x: 'v1',
+      y: 'v2'
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    dataType: 'json',
+    success: function (res) {
+      var data = res.data
+      // 模拟数据为空，显示emptyView
+      if (parentId == 1) {
+          data.list = []
+      }
+      that.refreshNewsData(data.list)
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+  })
+}
+
 Component({
-  
   properties: {
     modalHidden: {
       type: Boolean,
@@ -9,6 +39,9 @@ Component({
   },
 
   data: {
+    emptyHidden: true,
+    list: []
+    /*
     list: [
       {
         id:1,
@@ -63,36 +96,13 @@ Component({
         imageUrls: [],
         showImageUrls: [],
       },
-    ]
-  },
-
-  created: function() {
-    console.log('created')
-  },
-
-  attached: function () {
-    console.log('attached')
-    var listData = this.data.list;
-    for (var i  = 0; i < listData.length; i ++) {
-        var item = listData[i]
-        var imageSize = item.imageUrls.length
-        if (imageSize < 3) {
-          item.type = imageSize;
-        } else if (imageSize == 3) {
-          item.type = 2;
-        } else if (imageSize > 3) {
-          item.type = 4;
-        }
-        // 拷贝图片地址
-        for (var j = 0; j < item.type; j ++) {
-          item.showImageUrls[j] = item.imageUrls[j]
-        }
-    }
-    this.setData({
-      list: listData
-    })
+    ],
+    */
   },
   
+  ready: function() {
+    requestNewsList(this, 0, 0)
+  },
 
   /**
    * 组件的方法列表
@@ -110,8 +120,12 @@ Component({
       })
     },
 
+    scrollToTop: function (res) {
+      console.log("scrollToTop: 下拉刷新")
+    },
+
     scrollToBottom: function(res) {
-      console.log(res)
+      console.log("scrollToBottom: 上拉加载更多")
     },
 
     report: function(res) {
@@ -130,8 +144,17 @@ Component({
     onKindChange: function (res) {
       var parentId = res.detail.parentId
       var childId = res.detail.childId
-      console.log(parentId + ' --- ' + childId)
+      requestNewsList(this, parentId, childId)
     },
+
+    refreshNewsData: function (newsData) {
+      var listData = util.formatNewsType(newsData)
+      var empty = listData.length > 0;
+      this.setData({
+        list: listData,
+        emptyHidden: empty
+      })
+    }
 
     /*
     // 分享
@@ -157,5 +180,5 @@ Component({
       console.log(res.currentTarget.dataset.item)
     },
     */
-  }
+  },
 })

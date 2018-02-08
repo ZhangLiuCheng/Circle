@@ -49,9 +49,7 @@ Page({
   },
 
   publish:function() {
-    // wx.navigateTo({
-    //   url: '../publish/publish',
-    // })
+
     this.publishOptionModal.showModal();
   }
 })
