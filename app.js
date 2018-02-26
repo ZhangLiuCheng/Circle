@@ -11,7 +11,6 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log("login:" + res.code);
         var code = res.code;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
@@ -22,8 +21,7 @@ App({
           },
           success: function (res) {
             var openid = res.data.openid
-            console.log(res)
-            console.log("opengid: " + openid)
+            console.log(res.data)
 
             // wx.showToast({
             //   title: '获取opengId成功',

@@ -1,14 +1,15 @@
-var host = 'http://192.168.1.104:8080/'
+// var host = 'http://192.168.1.104:8080/'
+var host = 'https://www.bestcircler.com/'
 
 module.exports = {
   /**
    * method:get
    * params:code
    */
-  loginUrl: host + 'quanzi/user/loginWXApplet',
+  loginUrl: host + 'user/loginWXApplet',
 
   /**
    * 
    */
-  newsListUrl: host + 'quanzi/news/list'
+  newsListUrl: host + 'news/list'
 }

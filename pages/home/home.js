@@ -1,16 +1,17 @@
 // pages/home/home.js
 var util = require('../../utils/util.js')
 
+var page = 0
+var pageSize = 20
+
 var requestNewsList = function (that, parentId, childId) {
-  console.log(parentId + " -- " + childId)
-  wx.showLoading({
-    title: '加载中',
-  })
+  // console.log(parentId + " -- " + childId)
+  that.infoViewModal.showLoadingView()
   wx.request({
-    url: 'http://192.168.95.184:8080/newsList.json',
+    url: 'http://192.168.1.88:8081/newsList.json',
     data: {
-      x: 'v1',
-      y: 'v2'
+      page: page,
+      pageSize: pageSize
     },
     header: {
       'content-type': 'application/json'
@@ -24,8 +25,8 @@ var requestNewsList = function (that, parentId, childId) {
       }
       that.refreshNewsData(data.list)
     },
-    complete: function () {
-      wx.hideLoading()
+    fail: function (res) {
+      that.infoViewModal.showErrorView()
     }
   })
 }
@@ -39,7 +40,6 @@ Component({
   },
 
   data: {
-    emptyHidden: true,
     list: []
     /*
     list: [
@@ -101,6 +101,7 @@ Component({
   },
   
   ready: function() {
+    this.infoViewModal = this.selectComponent("#infoViewModal");
     requestNewsList(this, 0, 0)
   },
 
@@ -144,16 +145,26 @@ Component({
     onKindChange: function (res) {
       var parentId = res.detail.parentId
       var childId = res.detail.childId
+      page++;
       requestNewsList(this, parentId, childId)
     },
 
     refreshNewsData: function (newsData) {
       var listData = util.formatNewsType(newsData)
-      var empty = listData.length > 0;
       this.setData({
         list: listData,
-        emptyHidden: empty
       })
+
+      var empty = listData.length <= 0;
+      if (empty) {
+        this.infoViewModal.showEmptyView('暂无数据，请查看其他分类')
+      } else {
+        this.infoViewModal.hideInfoView()
+      }
+    },
+
+    networkRetry: function () {
+      console.log("重试 ")
     }
 
     /*

@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <view class="container" hidden='{{modalHidden}}'>
   <homeKindModal bind:kindChange="onKindChange"></homeKindModal>
-  <emptyModal modal-hidden='{{emptyHidden}}' modal-top='80' modal-bottom='100' modal-message='暂无数据，请查看其他分类'></emptyModal>
+  <infoViewModal id='infoViewModal' modal-top='80' modal-bottom='100' bind:retry="networkRetry"></infoViewModal>
 
   <scroll-view class='scrollView' scroll-y="true" bindscrolltolower='scrollToBottom' bindscrolltoupper='scrollToTop'>
     <view class='index-bd'>
