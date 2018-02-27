@@ -1,4 +1,11 @@
 
+var showToast = function (msg) {
+  wx.showToast({
+    title: msg,
+    icon: 'none',
+    duration: 1500
+  })
+}
 /**
  * 格式化首页列表格式.
  */
@@ -54,6 +61,7 @@ const formatNumber = n => {
 }
 
 module.exports = {
+  showToast: showToast,
   formatNewsType: formatNewsType,
   formatTime: formatTime
 }

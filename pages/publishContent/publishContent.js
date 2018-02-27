@@ -3,8 +3,12 @@
 var QQMapWX = require('../../libs/qqmap-wx-jssdk1/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 
+var utils = require('../../utils/util.js')
+var constants = require('../../utils/constants.js')
+
 Page({
   data: {
+    message: '',
     addressName: '',
     latitude: 0,
     longitude: 0,
@@ -22,23 +26,65 @@ Page({
   },
 
   onReady: function () {
-    this.dialogModal = this.selectComponent("#dialogModal");
+
   },
 
-  OnConfirm: function (e) {
-    console.log("OnConfirm  " + e.detail.key + " --  " + e.detail.key2)
+  valueChange: function (e) {
+    this.setData({
+      message: e.detail.value
+    })
   },
 
-  showCustonModal: function () {
-    this.dialogModal.showLogin()
+  // 发布
+  publish: function () {
+    if (this.data.message.length == 0) {
+      util.showToast('内容不能为空')
+      return
+    }
+
+    var that = this
+    // console.log(getApp().globalData.userToken)
+    // console.log(this.data.message)
+    // console.log(this.data.addressName)
+    console.log(this.data.latitude)
+    console.log(this.data.longitude)
+
+    var userToken = getApp().globalData.userToken
+    wx.request({
+      method: "POST",
+      url: constants.newsAdd,
+      data: {
+        token: userToken,
+        message: that.data.message,
+        addressName: that.data.addressName,
+        latitude: that.data.latitude,
+        longitude: that.data.longitude
+      },
+      header: {
+        // 'content-type': 'application/json'
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      dataType: 'json',
+      success: function (res) {
+        console.log(res)
+        if (res.statusCode == 200 && res.data.code == 0) {
+          utils.showToast("发布")
+        } else {
+          utils.showToast("发布失败")
+        }
+      },
+      fail: function () {
+        utils.showToast("发布失败")
+      }
+    })
   },
 
   address: function () {
     var that = this;
     wx.chooseLocation({
       success: function (res) {
-        console.log("解码前：")
-        console.log(res)
+        // console.log("解码前：")
+        // console.log(res)
         var addressName = res.name;
         if (addressName == undefined) {
           addressName = "解析失败，请重新选择地址"
@@ -97,8 +143,8 @@ Page({
         longitude: longitude
       },
       success: function (res) {
-        console.log("解码后：")
-        console.log(res)
+        // console.log("解码后：")
+        // console.log(res)
         that.setData({
           addressName: res.result.address,
           latitude: res.result.location.lat,

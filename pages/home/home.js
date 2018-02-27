@@ -1,6 +1,8 @@
 // pages/home/home.js
 var util = require('../../utils/util.js')
 
+var parentId
+var childId
 var page = 0
 var pageSize = 20
 
@@ -8,7 +10,7 @@ var requestNewsList = function (that, parentId, childId) {
   // console.log(parentId + " -- " + childId)
   that.infoViewModal.showLoadingView()
   wx.request({
-    url: 'http://192.168.1.88:8081/newsList.json',
+    url: 'http://192.168.1.88:8080/newsList.json',
     data: {
       page: page,
       pageSize: pageSize
@@ -143,8 +145,8 @@ Component({
     },
 
     onKindChange: function (res) {
-      var parentId = res.detail.parentId
-      var childId = res.detail.childId
+      parentId = res.detail.parentId
+      childId = res.detail.childId
       page++;
       requestNewsList(this, parentId, childId)
     },
@@ -165,6 +167,7 @@ Component({
 
     networkRetry: function () {
       console.log("重试 ")
+      requestNewsList(this, parentId, childId)
     }
 
     /*

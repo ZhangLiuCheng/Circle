@@ -1,13 +1,16 @@
 //app.js
 
 var constants = require('utils/constants.js')
+var utils = require('utils/util.js')
 
 App({
   globalData: {
+    userToken: null,
     userInfo: null
   },
 
   onLaunch: function () {
+    var that = this
     // 登录
     wx.login({
       success: res => {
@@ -20,26 +23,19 @@ App({
             'content-type': 'application/json'
           },
           success: function (res) {
-            var openid = res.data.openid
-            console.log(res.data)
-
-            // wx.showToast({
-            //   title: '获取opengId成功',
-            //   icon: 'none',
-            //   duration: 1500
-            // })
+            console.log(res)
+            if (res.statusCode == 200 && res.data.code == 0) {
+                var data = res.data.data
+                that.globalData.userToken = data.token
+                console.log(that.globalData.userToken)
+            } else {
+              utils.showToast("登录失败")
+            }
           },
           fail: function () {
-            console.log("获取opengId失败")
-
-            // wx.showToast({
-            //   title: '获取opengId失败',
-            //   icon: 'none',
-            //   duration: 1500
-            // })
+            utils.showToast("登录失败")
           }
         })
-        
       }
     })
 

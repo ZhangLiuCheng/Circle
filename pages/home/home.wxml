@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <view class="container" hidden='{{modalHidden}}'>
   <homeKindModal bind:kindChange="onKindChange"></homeKindModal>
-  <infoViewModal id='infoViewModal' modal-top='80' modal-bottom='100' bind:retry="networkRetry"></infoViewModal>
+  <infoViewModal id='infoViewModal' modal-top='80' modal-bottom='102' bind:retry="networkRetry"></infoViewModal>
 
   <scroll-view class='scrollView' scroll-y="true" bindscrolltolower='scrollToBottom' bindscrolltoupper='scrollToTop'>
     <view class='index-bd'>
