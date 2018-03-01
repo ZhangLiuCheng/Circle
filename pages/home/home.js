@@ -1,34 +1,48 @@
 // pages/home/home.js
 var util = require('../../utils/util.js')
+var constants = require('../../utils/constants.js')
 
-var parentId
-var childId
-var page = 0
+var parentId = 0
+var childId = 0
+var pageIndex = 0
 var pageSize = 20
 
 var requestNewsList = function (that, parentId, childId) {
-  // console.log(parentId + " -- " + childId)
-  that.infoViewModal.showLoadingView()
+  var app = getApp()
+  getApp().print("parentId:" + parentId + " , childId: " + childId + " , pageIndex: " + pageIndex)
+
+  if (pageIndex == 0) {
+    that.infoViewModal.showLoadingView()
+  }
   wx.request({
-    url: 'http://192.168.1.88:8080/newsList.json',
+    url: constants.newsListUrl,
     data: {
-      page: page,
-      pageSize: pageSize
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      superType: parentId,
+      newType: childId,
+      latitude: app.globalData.location.latitude,
+      longitude: app.globalData.location.longitude
     },
     header: {
       'content-type': 'application/json'
     },
     dataType: 'json',
     success: function (res) {
-      var data = res.data
-      // 模拟数据为空，显示emptyView
-      if (parentId == 1) {
-          data.list = []
+      if (res.statusCode == 200 && res.data.code == 0) {
+        var list = res.data.data;
+        getApp().print(list.length)
+        that.refreshNewsData(list)
+      } else {
+        if (pageIndex == 0) {
+          that.infoViewModal.showErrorView()
+        }
       }
-      that.refreshNewsData(data.list)
     },
     fail: function (res) {
-      that.infoViewModal.showErrorView()
+      if (pageIndex == 0) {
+        that.infoViewModal.showErrorView()
+      }
     }
   })
 }
@@ -43,63 +57,6 @@ Component({
 
   data: {
     list: []
-    /*
-    list: [
-      {
-        id:1,
-        message:"周围停车场太黑了,一个小时七元,有图有真相！！！",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 2,
-        message: "李小奴与贾乃亮内幕,撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: ["/images/test.png"],
-        showImageUrls: [],
-      },
-
-      {
-        id:3,
-        message: "xxx网络公司太坑爹了.里面太黑暗，无法语言描述,阿斯顿发好了阿斯顿发回来看阿瑟费去玩儿去玩儿阿斯顿发的方式阿斯顿发圈儿去玩儿阿斯顿发送到发送地方2请问日 u 去哦譬如破 iu 片【额外肉 i 去哦玩儿",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-        showImageUrls: [],
-      },
-      {
-        id: 4,
-        message: "周围停车场太黑了,一个小时七元",
-        imageUrls: ["/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 5,
-        message: "撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 6,
-        message: "据韩国庆尚南道密阳消防署26日介绍，报警者称，当天在密阳世宗医院发生的火灾源于1层的急诊室。截至当天上午11时，火灾已造成百余人伤亡。遇难者主要被发现在1、2层。消防部门正在现场进行搜救工作。",
-        imageUrls: [],
-        showImageUrls: [],
-      },
-      {
-        id: 7,
-        message: "一个小时七元,太几把贵了啊，擦擦擦",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 8,
-        message: "李小奴与贾乃亮内幕撒发送到发送地方撒发送到发asdfasdfasdfasd阿斯顿发送地方送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: [],
-        showImageUrls: [],
-      },
-    ],
-    */
   },
   
   ready: function() {
@@ -129,6 +86,8 @@ Component({
 
     scrollToBottom: function(res) {
       console.log("scrollToBottom: 上拉加载更多")
+      pageIndex++;
+      requestNewsList(this, parentId, childId)
     },
 
     report: function(res) {
@@ -145,19 +104,28 @@ Component({
     },
 
     onKindChange: function (res) {
+      pageIndex = 0
       parentId = res.detail.parentId
       childId = res.detail.childId
-      page++;
+      this.setData({
+        list: []
+      })
       requestNewsList(this, parentId, childId)
     },
 
     refreshNewsData: function (newsData) {
       var listData = util.formatNewsType(newsData)
+      var newList = []
+      if (pageIndex == 0) {
+        newList = listData
+      } else {
+        newList = this.data.list.concat(listData)
+      }
       this.setData({
-        list: listData,
+        list: newList,
       })
 
-      var empty = listData.length <= 0;
+      var empty = this.data.list.length <= 0;
       if (empty) {
         this.infoViewModal.showEmptyView('暂无数据，请查看其他分类')
       } else {
@@ -166,7 +134,7 @@ Component({
     },
 
     networkRetry: function () {
-      console.log("重试 ")
+      getApp().print("重试")
       requestNewsList(this, parentId, childId)
     }
 

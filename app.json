@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/splash/splash",
     "pages/main/main",
     "pages/detail/detail",
     "pages/publishContent/publishContent",

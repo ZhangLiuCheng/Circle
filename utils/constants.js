@@ -11,7 +11,7 @@ module.exports = {
   /**
    * 信息列表
    */
-  newsListUrl: host + 'news/list',
+  newsListUrl: host + 'news/queryList',
 
   /**
    * 发布信息

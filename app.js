@@ -1,44 +1,22 @@
 //app.js
 
-var constants = require('utils/constants.js')
-var utils = require('utils/util.js')
-
 App({
   globalData: {
     userToken: null,
-    userInfo: null
+    // userInfo: null,
+    location: {
+      addressName: '',
+      latitude: 0,
+      longitude: 0
+    }
+  },
+
+  print: function (res) {
+    console.log(res)
   },
 
   onLaunch: function () {
-    var that = this
-    // 登录
-    wx.login({
-      success: res => {
-        var code = res.code;
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wx.request({
-          url: constants.loginUrl + '?code=' + code,
-          data: {},
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            console.log(res)
-            if (res.statusCode == 200 && res.data.code == 0) {
-                var data = res.data.data
-                that.globalData.userToken = data.token
-                console.log(that.globalData.userToken)
-            } else {
-              utils.showToast("登录失败")
-            }
-          },
-          fail: function () {
-            utils.showToast("登录失败")
-          }
-        })
-      }
-    })
-
+    /*
     wx.getUserInfo({
       success: res => {
         this.globalData.userInfo = res.userInfo
@@ -66,5 +44,6 @@ App({
         })
       }
     })
+    */
   }
 })

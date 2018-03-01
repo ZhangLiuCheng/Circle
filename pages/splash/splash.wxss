@@ -1,0 +1,4 @@
+/* pages/splash/splash.wxss */
+page {
+  background-color: #ffffff;
+}

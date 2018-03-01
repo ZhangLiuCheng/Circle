@@ -8,25 +8,23 @@ var constants = require('../../utils/constants.js')
 
 Page({
   data: {
+    newsType: '',
     message: '',
     addressName: '',
     latitude: 0,
     longitude: 0,
     imageList: [],
     countIndex: 8,
-    count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    count: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    isAnonymous: 0
   },
 
   onLoad: function (option) {
-    console.log(option.id);
+    this.data.newsType = option.id
     qqmapsdk = new QQMapWX({
       key: 'QTVBZ-N3WWU-RSRVL-BAXSY-JRBC3-ZPFN7'
     });
     this.setLocation();
-  },
-
-  onReady: function () {
-
   },
 
   valueChange: function (e) {
@@ -35,10 +33,14 @@ Page({
     })
   },
 
+  switchChange: function (e) {
+    this.data.isAnonymous = e.detail.value ? 1 : 0
+  },
+
   // 发布
   publish: function () {
     if (this.data.message.length == 0) {
-      util.showToast('内容不能为空')
+      utils.showToast('内容不能为空')
       return
     }
 
@@ -46,8 +48,8 @@ Page({
     // console.log(getApp().globalData.userToken)
     // console.log(this.data.message)
     // console.log(this.data.addressName)
-    console.log(this.data.latitude)
-    console.log(this.data.longitude)
+    // console.log(this.data.newsType)
+    // console.log(this.data.longitude)
 
     var userToken = getApp().globalData.userToken
     wx.request({
@@ -55,14 +57,16 @@ Page({
       url: constants.newsAdd,
       data: {
         token: userToken,
+        newsType: that.data.newsType,
         message: that.data.message,
-        addressName: that.data.addressName,
+        address: that.data.addressName,
         latitude: that.data.latitude,
-        longitude: that.data.longitude
+        longitude: that.data.longitude,
+        isAnonymous: that.data.isAnonymous
       },
       header: {
         // 'content-type': 'application/json'
-        "content-type": "application/x-www-form-urlencoded"
+        "content-type": "application/x-www-form-urlencoded;charset=utf-8"
       },
       dataType: 'json',
       success: function (res) {

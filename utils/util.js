@@ -12,7 +12,7 @@ var showToast = function (msg) {
 var formatNewsType = function (originNews) {
   for (var i = 0; i < originNews.length; i++) {
     var item = originNews[i]
-    var imageSize = item.imageUrls.length
+    var imageSize = item.images.length
     if (imageSize < 3) {
       item.type = imageSize;
     } else if (imageSize == 3) {
@@ -23,7 +23,7 @@ var formatNewsType = function (originNews) {
     // 拷贝图片地址
     var showImageUrls = [];
     for (var j = 0; j < item.type; j++) {
-      showImageUrls[j] = item.imageUrls[j]
+      showImageUrls[j] = item.images[j]
     }
     item.showImageUrls = showImageUrls;
   }

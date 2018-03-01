@@ -33,7 +33,7 @@
     <view class='niming'>
       <image class='address_icon' src='/images/icon_niming.png'></image>
       <text class='niming-name'>匿名发布</text>
-      <switch class='niming-switch' bindchange="switch2Change" />
+      <switch class='niming-switch' bindchange="switchChange" />
     </view>
   </view>
 
