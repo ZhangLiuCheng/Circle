@@ -27,8 +27,9 @@ var requestNewsList = function (that, parentId, childId) {
     header: {
       'content-type': 'application/json'
     },
-    dataType: 'json',
+    // dataType: 'json',
     success: function (res) {
+      getApp().print(res)
       if (res.statusCode == 200 && res.data.code == 0) {
         var list = res.data.data;
         getApp().print(list.length)

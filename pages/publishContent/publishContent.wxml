@@ -1,23 +1,23 @@
 <view class='container'>
 
-  <textarea class='.content' placeholder="请输入内容（必填）" bindinput='valueChange' maxlength='1024'></textarea>
+  <textarea class='.content' placeholder="请输入内容(不少于20字）" bindinput='valueChange' maxlength='1024'></textarea>
 
   <view class="image">
 
     <view class='weui-uploader__hd'>
-      <view class="weui-uploader__title">点击可预览选好的图片</view>
-      <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
+      <view class="weui-uploader__title">单击图片预览，长按图片删除</view>
+      <view class="weui-uploader__info">{{imageList.length}}/{{imageSize}}</view>
     </view>
 
     <view class="weui-uploader__bd">
       <view>
         <block wx:for="{{imageList}}" wx:for-item="image" wx:key="*image">
           <view class="weui-uploader__file">
-            <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+            <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindlongpress='deleteImage' bindtap="previewImage"></image>
           </view>
         </block>
       </view>
-      <view class="weui-uploader__input-box">
+      <view class="weui-uploader__input-box" hidden='{{hiddenAddImage}}'>
         <view class="weui-uploader__input" bindtap="chooseImage"></view>
       </view>
     </view>
@@ -37,6 +37,6 @@
     </view>
   </view>
 
-  <button class='publish' catchtap='publish'>发布</button>
+  <button class='publish' catchtap='publish'>提交</button>
 
 </view>
