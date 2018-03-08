@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "infoViewModal": "../infoView/infoView"
+  }
+}

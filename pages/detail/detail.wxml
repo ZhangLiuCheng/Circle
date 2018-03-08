@@ -1,4 +1,7 @@
 <!--pages/detail/de tail.wxml-->
+
+<infoViewModal id='infoViewModal' modal-top='0' modal-msgLoading='加载详情中' modal-bottom='2' bind:retry="networkRetry"></infoViewModal>
+
 <view class='container'>
 
   <text class="item_bd_title">{{newsDetail.message}}</text>

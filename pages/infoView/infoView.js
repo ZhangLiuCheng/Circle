@@ -12,6 +12,11 @@ Component({
     modalBottom: {
       type: Int8Array,
       value: 0
+    },
+
+    modalMsgLoading: {
+      type: String,
+      value: '数据加载中'
     }
   },
 

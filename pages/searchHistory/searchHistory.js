@@ -1,11 +1,22 @@
 // pages/searchHistory/searchHistory.js
 var util = require('../../utils/util.js')
+var constants = require('../../utils/constants.js')
+
 var key_searchHistory = 'searchHistoryKey'
 
 Component({
   
   properties: {
 
+  },
+
+  data: {
+    open: true,
+    searchEnable: false,
+    keyword: '',
+    // searchHotList: ['地球到底有多大', '男人为什么那么坏', 'hihi', '上海什么地方比较好玩', 'xxx公司怎么样？'],
+    // searchHistoryList:['贾乃亮', 'innotech', '花儿为什么那么红', '上海什么地方比较好玩', 'xxx公司怎么样？']
+    searchHistoryList: []
   },
 
   ready: function () {
@@ -18,15 +29,27 @@ Component({
         })
       }
     })
-  },
 
-  data: {
-    open: true,
-    searchEnable: false,
-    keyword: '',
-    searchHotList: ['地球到底有多大', '男人为什么那么坏', 'hihi', '上海什么地方比较好玩', 'xxx公司怎么样？'],
-    // searchHistoryList:['贾乃亮', 'innotech', '花儿为什么那么红', '上海什么地方比较好玩', 'xxx公司怎么样？']
-    searchHistoryList: []
+    var token = getApp().globalData.userToken
+    wx.request({
+      url: constants.searchHotKeyword,
+      data: {
+        token: token
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if (res.statusCode == 200 && res.data.code == 0) {
+          that.setData({
+            searchHotList: res.data.data
+          })
+        }
+      },
+      fail: function (res) {
+
+      }
+    })
   },
 
   methods: {
@@ -66,9 +89,16 @@ Component({
 
     // 点击搜索按钮
     searching: function () {
-      this.data.searchHistoryList.unshift(this.data.keyword)
-      this.requestSearch(this.data.keyword)
-      this.resetSearchHistoryData()
+      var keyword = this.data.keyword
+      if (keyword.length == 0) {
+        this.closePanel()
+        // TODO 触发取消
+        this.triggerEvent("searchCancel")
+      } else {
+        this.data.searchHistoryList.unshift(keyword)
+        this.requestSearch(keyword)
+        this.resetSearchHistoryData()
+      }
     },
 
     hotCatch: function (e) {
@@ -78,10 +108,11 @@ Component({
 
     historyCatch: function (e) {
       var item = e.currentTarget.dataset.item;
-      this.setData({
-        keyword: item
-      })
-      this.searchBtnState()
+      // this.setData({
+      //   keyword: item
+      // })
+      // this.searchBtnState()
+      this.requestSearch(item)
     },
 
     historyDelete: function (e) {
@@ -97,6 +128,9 @@ Component({
       })
       this.searchBtnState()
       this.closePanel()
+
+      // TODO 触发搜索
+      this.triggerEvent("searchTo", keyword)
     },
 
     // 设置<搜索>按钮是否可点击状态

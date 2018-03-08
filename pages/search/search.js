@@ -1,104 +1,119 @@
 // pages/search/search.js
 
+var constants = require('../../utils/constants.js')
+var pageIndex = 0
+var pageSize = 20
+
+var requestSearchList = function (that) {
+  if (pageIndex == 0) {
+    that.infoViewModal.showLoadingView()
+  }
+  var token = getApp().globalData.userToken
+  var keyword = that.data.keyword
+  wx.request({
+    url: constants.searchList,
+    data: {
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      token: token,
+      keyword: keyword
+    },
+    header: {
+      'content-type': 'application/json;charset=utf-8'
+    },
+    success: function (res) {
+      getApp().print(res)
+      if (res.statusCode == 200 && res.data.code == 0) {
+        var list = res.data.data;
+        that.refreshNewsData(list)
+      } else {
+        if (pageIndex == 0) {
+          that.infoViewModal.showErrorView()
+        }
+      }
+    },
+    fail: function (res) {
+      if (pageIndex == 0) {
+        that.infoViewModal.showErrorView()
+      }
+    }
+  })
+}
+
 Page({
 
   data: {
-    list: [
-      {
-        id: 1,
-        message: "周围停车场太黑了,一个小时七元,有图有真相！！！",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-      },
-
-      {
-        id: 2,
-        message: "李小奴与贾乃亮内幕,撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-      },
-
-      {
-        id: 3,
-        message: "xxx网络公司太坑爹了.里面太黑暗，无法语言描述,阿斯顿发好了阿斯顿发回来看阿瑟费去玩儿去玩儿阿斯顿发的方式阿斯顿发圈儿去玩儿阿斯顿发送到发送地方2请问日 u 去哦譬如破 iu 片【额外肉 i 去哦玩儿"
-      },
-      {
-        id: 4,
-        message: "周围停车场太黑了,一个小时七元",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-      },
-
-      {
-        id: 5,
-        message: "撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-      },
-
-      {
-        id: 6,
-        message: "据韩国庆尚南道密阳消防署26日介绍，报警者称，当天在密阳世宗医院发生的火灾源于1层的急诊室。截至当天上午11时，火灾已造成百余人伤亡。遇难者主要被发现在1、2层。消防部门正在现场进行搜救工作。",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-      },
-      {
-        id: 7,
-        message: "一个小时七元,太几把贵了啊，擦擦擦"
-      },
-
-      {
-        id: 8,
-        message: "李小奴与贾乃亮内幕撒发送到发送地方撒发送到发asdfasdfasdfasd阿斯顿发送地方送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-      },
-    ]
+    keyword: '',
+    list: []
   },
 
   onLoad: function (options) {
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
-  
+    this.infoViewModal = this.selectComponent("#infoViewModal");
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
   
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
   
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
+    pageIndex++;
+    requestSearchList(this)
+    console.log("onReachBottom: 上拉加载更多")
+  },
+
+  onShareAppMessage: function () {
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  networkRetry: function () {
+    getApp().print("重试")
+    requestSearchList(this)
+  },
+
+  onSearchCancel: function (e) {
+    console.log("onSearchCancel")
+    if (this.data.list.length == 0) {
+      wx.navigateBack()
+    }
+  },
+
+  onSearchTo: function (e) {
+    console.log("onSearchTo ")
+    this.data.keyword = e.detail
+    requestSearchList(this)
+  },
+
+  refreshNewsData: function (data) {
+    var newList = []
+    if (pageIndex == 0) {
+      newList = data
+    } else {
+      newList = this.data.list.concat(data)
+    }
+    this.setData({
+      list: newList,
+    })
+
+    var empty = this.data.list.length <= 0;
+    if (empty) {
+      this.infoViewModal.showEmptyView('暂无数据')
+    } else {
+      this.infoViewModal.hideInfoView()
+    }
   },
 })
