@@ -11,6 +11,18 @@ module.exports = {
   loginUrl: host + 'user/loginWXApplet',
 
   /**
+   * 修改用户信息.
+   * method:post
+   * params:token,nickName,headUrl
+   */
+  updateUser: host + 'user/update',
+
+  /**
+   * 获取用户信息.
+   */
+  userInfo: host + 'user/search',
+
+  /**
    * 信息列表
    */
   newsListUrl: host + 'news/queryList',
@@ -41,5 +53,10 @@ module.exports = {
    * 列表详情
    * id
    */
-  newsDetail: host + 'news/detail'
+  newsDetail: host + 'news/detail',
+
+  /**
+   * 我的发布
+   */
+  myNews: host + 'news/myNews'
 }

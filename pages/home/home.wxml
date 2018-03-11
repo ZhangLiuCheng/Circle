@@ -8,9 +8,9 @@
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
         <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>
           <view class='user_info'>
-            <image class="user_info_avatar" src="/images/avatar_default.png"></image>
+            <image class="user_info_avatar" src="{{item.user.headUrl}}"></image>
             <view class='user_info_name_address'>
-              <text class='user_info_name'>zhangsan</text>
+              <text class='user_info_name'>{{item.user.nickname}}</text>
               <text class='user_info_address'>位置:{{item.address}}({{item.range}})</text>
             </view>
             <text class='user_info_report' data-item='{{item}}' catchtap='report'>举报</text>
@@ -31,7 +31,7 @@
           <view class='item_function'>
             <view class='item_function_content' data-item='{{item}}'>
               <image class='item_share' src='/images/icon_repost.png'></image>
-              <text class='item_function_txt'>243</text>
+              <text class='item_function_txt'>{{item.shareCount}}</text>
             </view>
             <view class='item_function_content' data-item='{{item}}'>
               <image class='item_share' src='/images/icon_comment.png'></image>
@@ -39,7 +39,7 @@
             </view>
             <view class='item_function_content' data-item='{{item}}'>
               <image class='item_share' src='/images/icon_like.png'></image>
-              <text class=' item_function_txt'>1.2万</text>
+              <text class=' item_function_txt'>{{item.supportCount}}</text>
             </view>
           </view>
 

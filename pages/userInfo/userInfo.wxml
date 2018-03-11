@@ -2,16 +2,16 @@
 
 <view class='userInfo' catchtap='chooseImage'>
   <text class='user-name'>头像</text>
-  <image class="user-avatar" src="{{avatarPath}}"></image>
+  <image class="user-avatar" src="{{avatarPath}}" binderror='headError'></image>
   <image class='navigator-arrow' src="/images/arraw.png"></image>
 </view>
 
 <view class="navigator">
   <view class='navigator-box'>
     <view class="navigator-text">昵称</view>
-    <input class='navigator-nickname' type='text' bindinput="bindNicknameInput" placeholder='请输入新昵称' maxlength='30' confirm-type='done'></input>
+    <input class='navigator-nickname' type='text' bindinput="bindNicknameInput" value='{{nickName}}' placeholder='请输入新昵称' maxlength='30' confirm-type='done'></input>
     <image class='navigator-arrow' src="/images/arraw.png"></image>
   </view>
 </view>
 
-<button class='saveInfoBtn'>保存</button>
+<button class='saveInfoBtn' catchtap='save'>保存</button>

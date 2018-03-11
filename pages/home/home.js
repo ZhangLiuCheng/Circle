@@ -20,7 +20,7 @@ var requestNewsList = function (that, parentId, childId) {
       pageIndex: pageIndex,
       pageSize: pageSize,
       superType: parentId,
-      newType: childId,
+      newsType: childId,
       latitude: app.globalData.location.latitude,
       longitude: app.globalData.location.longitude
     },
@@ -29,7 +29,7 @@ var requestNewsList = function (that, parentId, childId) {
     },
     // dataType: 'json',
     success: function (res) {
-      // getApp().print(res)
+      getApp().print(res)
       if (res.statusCode == 200 && res.data.code == 0) {
         var list = res.data.data;
         getApp().print(list.length)

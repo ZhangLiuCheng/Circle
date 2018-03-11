@@ -2,11 +2,20 @@
 Page({
 
   data: {
-    tabInex : 0
+    tabIndex : 0,
+    refreshUserInfo: false
   },
 
   onLoad: function (options) {
     
+  },
+
+  onShow: function () {
+    if (this.myModal != undefined && this.data.refreshUserInfo) {
+      getApp().print('刷新用户信息')
+      this.data.refreshUserInfo = false
+      this.myModal.refreshUserInfo()
+    }
   },
 
   onShareAppMessage: function () {

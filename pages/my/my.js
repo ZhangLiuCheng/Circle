@@ -1,4 +1,38 @@
 // pages/my/my.js
+
+var utils = require('../../utils/util.js')
+var constants = require('../../utils/constants.js')
+
+var defaultAvatar = '/images/avatar_default.png'
+
+var requestUserInfo = function (that) {
+  var token = getApp().globalData.userToken
+  wx.request({
+    url: constants.userInfo,
+    data: {
+      token: token,
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    success: function (res) {
+      getApp().print(res)
+      if (res.statusCode == 200 && res.data.code == 0) {
+        var data = res.data.data
+        // var nickName = data.nickname != undefined ? data.nickname : ''
+        // var headUrl = data.headUrl
+        that.setData({ 
+          nickName: data.nickname,
+          avatarPath: data.headUrl
+        })
+      } else {
+      }
+    },
+    fail: function (res) {
+    }
+  })
+}
+
 Component({
 
   properties: {
@@ -9,8 +43,13 @@ Component({
   },
 
   data: {
-    avatarPath:'/images/avatar_default.png'
+    avatarPath: defaultAvatar,
+    nickName: ''
   },
+
+  ready: function () {
+    requestUserInfo(this)
+  }, 
 
   methods: {
     showModal: function () {
@@ -25,10 +64,22 @@ Component({
       })
     },
 
+    refreshUserInfo: function () {
+      requestUserInfo(this)
+    },
+
+    headError: function () {
+      this.setData({
+        avatarPath: defaultAvatar
+      })
+    },
+
     // 修改账户信息
     userInfo: function () {
+      var nickName = this.data.nickName
+      var headUrl = this.data.avatarPath
       wx.navigateTo({
-        url: '../userInfo/userInfo',
+        url: '../userInfo/userInfo?nickName=' + nickName + '&headUrl=' + headUrl,
       })
     },
 
