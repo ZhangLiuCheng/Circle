@@ -8,25 +8,25 @@
     <block wx:for-items="{{list}}" wx:key="{{item.id}}">
       <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>
 
-      <view class='item_bd_content'>
-            <view class="item_bd_title_content">
-              <text class="item_bd_title">{{item.message}}</text>
-            </view>
-            <image class="item_bd_image {{item.images.length > 0 ? '':'item_bd_image-hidden'}}" src='{{item.images[0]}}'></image>
-      </view>
+        <view class='item_bd_content'>
+          <view class="item_bd_title_content">
+            <text class="item_bd_title">{{item.message}}</text>
+          </view>
+          <image lazy-load='true' mode='aspectFill' class="item_bd_image {{item.images.length > 0 ? '':'item_bd_image-hidden'}}" src='{{item.images[0]}}'></image>
+        </view>
 
         <view class='item_function'>
           <view class='item_function_content' data-item='{{item}}'>
-            <image class='item_share' src='/images/icon_repost.png'></image>
-            <text class='item_function_txt'>243</text>
+            <image class='item_share' src='/images/icon_view.png'></image>
+            <text class='item_function_txt'>{{item.views}}</text>
           </view>
           <view class='item_function_content' data-item='{{item}}'>
             <image class='item_share' src='/images/icon_comment.png'></image>
             <text class='item_function_txt'>敬请期待</text>
           </view>
-          <view class='item_function_content' data-item='{{item}}'>
-            <image class='item_share' src='/images/icon_like.png'></image>
-            <text class=' item_function_txt'>1.2万</text>
+          <view class='item_function_content' data-item='{{item}}' catchtap='like'>
+            <image class='item_share' src="{{item.isCollect == 0 ? '/images/icon_like.png':'/images/icon_like_1.png'}}"></image>
+            <text class=' item_function_txt'>{{item.supportCount}}</text>
           </view>
         </view>
       </navigator>

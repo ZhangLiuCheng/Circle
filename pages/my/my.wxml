@@ -26,7 +26,7 @@
     <view class="navigator" catchtap='advise'>
       <view class='navigator-box'>
         <image class='navigator-icon' src="/images/icon_suggest.png"></image>
-        <view class="navigator-text">投诉建议</view>
+        <view class="navigator-text">建议反馈</view>
         <image class='navigator-arrow' src="/images/arraw.png"></image>
       </view>
 

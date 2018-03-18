@@ -1,8 +1,11 @@
 <!--pages/myLike/myLike.wxml-->
+
+<infoViewModal id='infoViewModal' modal-bottom='2' modal-msgLoading='加载中' modalMsgEmpty='暂无收藏' bind:retry="networkRetry" ></infoViewModal>
+
 <view class="container">
     <view class='index-bd'>
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-        <navigator class="item_bd" url='../detail/detail?id={{item.id}}'>
+        <view class="item_bd" data-item='{{item}}' catchtap='detail'>
           <view class='user_info'>
             <image class="user_info_avatar" src="/images/avatar_default.png"></image>
             <view class='user_info_name_address'>
@@ -26,20 +29,20 @@
 
           <view class='item_function'>
             <view class='item_function_content' data-item='{{item}}'>
-              <image class='item_share' src='/images/icon_repost.png'></image>
-              <text class='item_function_txt'>243</text>
+              <image class='item_share' src='/images/icon_view.png'></image>
+              <text class='item_function_txt'>{{item.views}}</text>
             </view>
             <view class='item_function_content' data-item='{{item}}'>
               <image class='item_share' src='/images/icon_comment.png'></image>
               <text class='item_function_txt'>敬请期待</text>
             </view>
-            <view class='item_function_content' data-item='{{item}}'>
-              <image class='item_share' src='/images/icon_like.png'></image>
-              <text class=' item_function_txt'>1.2万</text>
+            <view class='item_function_content' data-item='{{item}}' catchtap='like'>
+              <image class='item_share' src="{{item.isCollect == 0 ? '/images/icon_like.png':'/images/icon_like_1.png'}}"></image>
+              <text class=' item_function_txt'>{{item.supportCount}}</text>
             </view>
           </view>
 
-        </navigator>
+        </view>
       </block>
     </view>
 

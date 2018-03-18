@@ -20,7 +20,7 @@
     <!-- 数据为空  -->
     <view class='empty-layout' hidden='{{emptyHidden}}'>
       <image class='empty-layout-image' src='/images/empty.png'></image>
-      <text class='empty-layout-text'>{{modalMessageEmpty}}</text>
+      <text class='empty-layout-text'>{{modalMsgEmpty}}</text>
     </view>
 
   </view>

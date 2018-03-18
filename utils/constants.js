@@ -58,5 +58,19 @@ module.exports = {
   /**
    * 我的发布
    */
-  myNews: host + 'news/myNews'
+  myNews: host + 'news/myNews',
+
+  /**
+   * 收藏
+   * method:get
+   * params:token, newsId, type=1添加收藏，type=2取消收藏
+   */
+  newsCollection: host + 'news/setCollection',
+
+  /**
+   * 收藏
+   * method:get
+   * params:token, pageIndex，pageSize
+   */
+  myCollection: host + 'news/myCollection',
 }

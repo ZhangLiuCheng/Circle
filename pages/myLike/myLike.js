@@ -1,136 +1,180 @@
 // pages/myLike/myLike.js
+
+var constants = require('../../utils/constants.js')
+var util = require('../../utils/util.js')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    list: [
-      {
-        id: 1,
-        message: "周围停车场太黑了,一个小时七元,有图有真相！！！",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 2,
-        message: "李小奴与贾乃亮内幕,撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: ["/images/test.png"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 3,
-        message: "xxx网络公司太坑爹了.里面太黑暗，无法语言描述,阿斯顿发好了阿斯顿发回来看阿瑟费去玩儿去玩儿阿斯顿发的方式阿斯顿发圈儿去玩儿阿斯顿发送到发送地方2请问日 u 去哦譬如破 iu 片【额外肉 i 去哦玩儿",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "/images/test.png"],
-        showImageUrls: [],
-      },
-      {
-        id: 4,
-        message: "周围停车场太黑了,一个小时七元",
-        imageUrls: ["/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 5,
-        message: "撒发送到发送地方撒发送到发送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 6,
-        message: "据韩国庆尚南道密阳消防署26日介绍，报警者称，当天在密阳世宗医院发生的火灾源于1层的急诊室。截至当天上午11时，火灾已造成百余人伤亡。遇难者主要被发现在1、2层。消防部门正在现场进行搜救工作。",
-        imageUrls: [],
-        showImageUrls: [],
-      },
-      {
-        id: 7,
-        message: "一个小时七元,太几把贵了啊，擦擦擦",
-        imageUrls: ["http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png", "http://img1.3lian.com/2015/w7/85/d/101.jpg", "/images/test.png"],
-        showImageUrls: [],
-      },
-
-      {
-        id: 8,
-        message: "李小奴与贾乃亮内幕撒发送到发送地方撒发送到发asdfasdfasdfasd阿斯顿发送地方送地方撒发送发送地方撒发送发送分撒发送到发送分",
-        imageUrls: [],
-        showImageUrls: [],
-      },
-    ]
+    list: [],
+    pageIndex: 0,
+    pageSize: 20
   },
 
   onLoad: function () {
-    console.log('onLoad')
-    var listData = this.data.list;
-    for (var i = 0; i < listData.length; i++) {
-      var item = listData[i]
-      var imageSize = item.imageUrls.length
-      if (imageSize < 3) {
-        item.type = imageSize;
-      } else if (imageSize == 3) {
-        item.type = 2;
-      } else if (imageSize > 3) {
-        item.type = 4;
-      }
-      // 拷贝图片地址
-      for (var j = 0; j < item.type; j++) {
-        item.showImageUrls[j] = item.imageUrls[j]
-      }
-    }
-    this.setData({
-      list: listData
+  },
+
+  onReady: function () {
+    this.infoViewModal = this.selectComponent("#infoViewModal");
+    this.requestMyCollectionList()
+  },
+
+  onPullDownRefresh: function () {
+    this.data.pageIndex = 0;
+    this.requestMyCollectionList()
+  },
+
+  onReachBottom: function () {
+    this.data.pageIndex++;
+    this.requestMyCollectionList()
+  },
+
+  onShareAppMessage: function () {
+  
+  },
+
+  networkRetry: function () {
+    this.requestMyCollectionList()
+  },
+
+  detail: function (res) {
+    let item = res.currentTarget.dataset.item
+    wx.navigateTo({
+      url: '../detail/detail?id=' + item.id,
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  // 举报
+  report: function (res) {
+    console.log(res.currentTarget.dataset.item)
+
+    wx.showActionSheet({
+      itemList: ['信息不可靠', '其他'],
+      success: function (res) {
+        console.log(res.tapIndex)
+        if (res.tapIndex == 1) {
+          wx.navigateTo({
+            url: '../report/report',
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 点赞
+  like: function (res) {
+
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.data.refreshMainList = true
+
+    let item = res.currentTarget.dataset.item
+    console.log(item)
+    var collectType = item.isCollect + 1;
+    this.requestCollect(item.id, collectType)
+
+    let newList = this.data.list
+    // 更新列表数据
+    for (var i = 0; i < newList.length; i++) {
+      if (newList[i].id == item.id) {
+        if (newList[i].isCollect == 0) {
+          newList[i].isCollect = 1
+          newList[i].supportCount++
+        } else {
+          newList[i].isCollect = 0
+          newList[i].supportCount--
+        }
+        break
+      }
+    }
+    this.setData({
+      list: newList
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  refreshNewsData: function (newsData) {
+    var listData = util.formatNewsType(newsData)
+    var newList = []
+    if (this.data.pageIndex == 0) {
+      newList = listData
+    } else {
+      newList = this.data.list.concat(listData)
+    }
+    this.setData({
+      list: newList,
+    })
+
+    var empty = this.data.list.length <= 0;
+    if (empty) {
+      this.infoViewModal.showEmptyView('暂无收藏')
+    } else {
+      this.infoViewModal.hideInfoView()
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  requestMyCollectionList: function () {
+    var that = this
+    if (that.data.pageIndex == 0) {
+      that.infoViewModal.showLoadingView()
+    }
+    var token = getApp().globalData.userToken
+    wx.request({
+      url: constants.myCollection,
+      data: {
+        pageIndex: that.data.pageIndex,
+        pageSize: that.data.pageSize,
+        token: token
+      },
+      header: {
+        'content-type': 'application/json;charset=utf-8'
+      },
+      success: function (res) {
+        getApp().print(res)
+        wx.stopPullDownRefresh()
+        if (res.statusCode == 200 && res.data.code == 0) {
+          var list = res.data.data;
+          that.refreshNewsData(list)
+        } else {
+          if (this.data.pageIndex == 0) {
+            that.infoViewModal.showErrorView()
+          }
+        }
+      },
+      fail: function (res) {
+        wx.stopPullDownRefresh()
+        if (this.data.pageIndex == 0) {
+          that.infoViewModal.showErrorView()
+        }
+      }
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  requestCollect: function (newsId, collectType) {
+    var that = this
+    var app = getApp()
+    var userToken = getApp().globalData.userToken
+    wx.request({
+      url: constants.newsCollection,
+      method: "POST",
+      data: {
+        token: userToken,
+        newsId: newsId,
+        collectType: collectType,
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      success: function (res) {
+        getApp().print(res)
+        if (res.statusCode == 200 && res.data.code == 0) {
+          var list = res.data.data;
+        } else {
+        }
+      },
+      fail: function (res) {
+      }
+    })
   }
 })

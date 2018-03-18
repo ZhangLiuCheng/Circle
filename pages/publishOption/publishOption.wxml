@@ -8,27 +8,27 @@
   <view class='option-layout'>
     <view class='option-item' catchtap='optionPublish' id="1" animation='{{animOption1}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_1.png" />
-      <text class='option-item-txt'>分类1</text>
+      <text class='option-item-txt'>旅游遇坑</text>
     </view>
     
     <view class='option-item' catchtap='optionPublish' id="2" animation='{{animOption2}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_2.png" />
-      <text class='option-item-txt'>分类2</text>
+      <text class='option-item-txt'>网络骗局</text>
     </view>
 
     <view class='option-item' catchtap='optionPublish' id="3" animation='{{animOption3}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_3.png" />
-      <text class='option-item-txt'>分类3</text>
+      <text class='option-item-txt'>网购假货</text>
     </view>
 
     <view class='option-item' catchtap='optionPublish' id="4" animation='{{animOption4}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_4.png" />
-      <text class='option-item-txt'>分类4</text>
+      <text class='option-item-txt'>黑心商家</text>
     </view>
 
     <view class='option-item' catchtap='optionPublish' id="5" animation='{{animOption5}}'>
       <image class='option-item-image' mode='aspectFit' src="image/option_5.png" />
-      <text class='option-item-txt'>分类5</text>
+      <text class='option-item-txt'>其他</text>
     </view>
   </view>
 

@@ -2,3 +2,9 @@
 page {
   background-color: #ffffff;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+}

@@ -1,0 +1,39 @@
+/* pages/report/report.wxss */
+
+page {
+  background-color: #f0f0f0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  width: 94%;
+  height: 300rpx;
+  padding: 3%;
+  background-color: #fff;
+  margin-top: 30rpx;
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+  font-size: 30rpx;
+}
+
+.contact {
+  width: 94%;
+  padding: 3%;
+  background-color: #fff;
+  margin-top: 30rpx;
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+  font-size: 30rpx;
+}
+
+.saveInfoBtn {
+  margin-top: 80rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height: auto;
+  background-color: #fff;
+}

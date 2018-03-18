@@ -17,6 +17,11 @@ Component({
     modalMsgLoading: {
       type: String,
       value: '数据加载中'
+    },
+
+    modalMsgEmpty: {
+      type: String,
+      value: '暂无数据'
     }
   },
 
@@ -26,7 +31,7 @@ Component({
     emptyHidden: true,
     errorHidden: true,
     // modalMessageLoading: '宝宝正在努力加载中...',
-    modalMessageEmpty: '暂无数据',
+    // modalMessageEmpty: '暂无数据',
     // modalMessageError: '请检查网络连接或点击重试'
   },
 

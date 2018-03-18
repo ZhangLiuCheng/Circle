@@ -9,7 +9,8 @@
     "pages/aboutUs/aboutUs",
     "pages/advise/advise",
     "pages/myLike/myLike",
-    "pages/myPublish/myPublish"
+    "pages/myPublish/myPublish",
+    "pages/report/report"
   ],
   "window": {
     "backgroundTextStyle": "light",

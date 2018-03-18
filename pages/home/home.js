@@ -2,52 +2,6 @@
 var util = require('../../utils/util.js')
 var constants = require('../../utils/constants.js')
 
-var parentId = 0
-var childId = 0
-var pageIndex = 0
-var pageSize = 20
-
-var requestNewsList = function (that, parentId, childId) {
-  var app = getApp()
-  getApp().print("parentId:" + parentId + " , childId: " + childId + " , pageIndex: " + pageIndex)
-
-  if (pageIndex == 0) {
-    that.infoViewModal.showLoadingView()
-  }
-  wx.request({
-    url: constants.newsListUrl,
-    data: {
-      pageIndex: pageIndex,
-      pageSize: pageSize,
-      superType: parentId,
-      newsType: childId,
-      latitude: app.globalData.location.latitude,
-      longitude: app.globalData.location.longitude
-    },
-    header: {
-      'content-type': 'application/json'
-    },
-    // dataType: 'json',
-    success: function (res) {
-      getApp().print(res)
-      if (res.statusCode == 200 && res.data.code == 0) {
-        var list = res.data.data;
-        getApp().print(list.length)
-        that.refreshNewsData(list)
-      } else {
-        if (pageIndex == 0) {
-          that.infoViewModal.showErrorView()
-        }
-      }
-    },
-    fail: function (res) {
-      if (pageIndex == 0) {
-        that.infoViewModal.showErrorView()
-      }
-    }
-  })
-}
-
 Component({
   properties: {
     modalHidden: {
@@ -57,18 +11,23 @@ Component({
   },
 
   data: {
-    list: []
+    list: [],
+    parentId: 0,
+    childId: 0,
+    pageIndex: 0,
+    pageSize: 20
   },
-  
-  ready: function() {
+
+  ready: function () {
     this.infoViewModal = this.selectComponent("#infoViewModal");
-    requestNewsList(this, 0, 0)
+    this.requestNewsList(0, 0)
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+
     showModal: function () {
       this.setData({
         modalHidden: false
@@ -85,18 +44,32 @@ Component({
       console.log("scrollToTop: 下拉刷新")
     },
 
-    scrollToBottom: function(res) {
+    scrollToBottom: function (res) {
       console.log("scrollToBottom: 上拉加载更多")
-      pageIndex++;
-      requestNewsList(this, parentId, childId)
+      this.data.pageIndex++;
+      this.requestNewsList(this.data.parentId, this.data.childId)
     },
 
-    report: function(res) {
+    detail: function (res) {
+      let item = res.currentTarget.dataset.item
+      wx.navigateTo({
+        url: '../detail/detail?id=' + item.id,
+      })
+    },
+    
+    // 举报
+    report: function (res) {
       console.log(res.currentTarget.dataset.item)
+
       wx.showActionSheet({
-        itemList: ['信息不真实', '恶意重伤', '其他'],
+        itemList: ['信息不可靠', '其他'],
         success: function (res) {
           console.log(res.tapIndex)
+          if (res.tapIndex == 1) {
+            wx.navigateTo({
+              url: '../report/report',
+            })
+          }
         },
         fail: function (res) {
           console.log(res.errMsg)
@@ -105,19 +78,19 @@ Component({
     },
 
     onKindChange: function (res) {
-      pageIndex = 0
-      parentId = res.detail.parentId
-      childId = res.detail.childId
+      this.data.pageIndex = 0
+      this.data.parentId = res.detail.parentId
+      this.data.childId = res.detail.childId
       this.setData({
         list: []
       })
-      requestNewsList(this, parentId, childId)
+      this.requestNewsList(this.data.parentId, this.data.childId)
     },
 
     refreshNewsData: function (newsData) {
       var listData = util.formatNewsType(newsData)
       var newList = []
-      if (pageIndex == 0) {
+      if (this.data.pageIndex == 0) {
         newList = listData
       } else {
         newList = this.data.list.concat(listData)
@@ -134,10 +107,14 @@ Component({
       }
     },
 
+    refreshList: function () {
+      this.requestNewsList(this.data.parentId, this.data.childId)
+    },
+
     networkRetry: function () {
       getApp().print("重试")
-      requestNewsList(this, parentId, childId)
-    }
+      this.requestNewsList(this.data.parentId, this.data.childId)
+    },
 
     /*
     // 分享
@@ -157,11 +134,101 @@ Component({
         duration: 1500
       })
     },
+    */
 
     // 点赞
     like: function (res) {
-      console.log(res.currentTarget.dataset.item)
+      let item = res.currentTarget.dataset.item
+      console.log(item)
+      var collectType = item.isCollect + 1;
+      this.requestCollect(item.id, collectType)
+
+      let newList = this.data.list
+      // 更新列表数据
+      for (var i = 0; i < newList.length; i++) {
+        if (newList[i].id == item.id) {
+          if (newList[i].isCollect == 0) {
+            newList[i].isCollect = 1
+            newList[i].supportCount++
+          } else {
+            newList[i].isCollect = 0
+            newList[i].supportCount--
+          }
+          break
+        } 
+      }
+      this.setData({
+        list: newList
+      })
     },
-    */
+
+
+    requestNewsList: function (parentId, childId) {
+      var that = this
+      var app = getApp()
+      // getApp().print("parentId:" + parentId + " , childId: " + childId + " , pageIndex: " + pageIndex)
+
+      if (that.data.pageIndex == 0) {
+        that.infoViewModal.showLoadingView()
+      }
+      wx.request({
+        url: constants.newsListUrl,
+        data: {
+          pageIndex: that.data.pageIndex,
+          pageSize: that.data.pageSize,
+          superType: that.data.parentId,
+          newsType: that.data.childId,
+          latitude: app.globalData.location.latitude,
+          longitude: app.globalData.location.longitude
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          getApp().print(res)
+          if (res.statusCode == 200 && res.data.code == 0) {
+            var list = res.data.data;
+            that.refreshNewsData(list)
+          } else {
+            if (that.data.pageIndex == 0) {
+              that.infoViewModal.showErrorView()
+            }
+          }
+        },
+        fail: function (res) {
+          if (that.data.pageIndex == 0) {
+            that.infoViewModal.showErrorView()
+          }
+        }
+      })
+    },
+
+    requestCollect: function (newsId, collectType) {
+      var that = this
+      var app = getApp()
+      var userToken = getApp().globalData.userToken
+
+      wx.request({
+        url: constants.newsCollection,
+        method: "POST",
+        data: {
+          token: userToken,
+          newsId: newsId,
+          collectType: collectType,
+        },
+        header: {
+          "content-type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        success: function (res) {
+          getApp().print(res)
+          if (res.statusCode == 200 && res.data.code == 0) {
+            var list = res.data.data;
+          } else {
+          }
+        },
+        fail: function (res) {
+        }
+      })
+    }
   },
 })

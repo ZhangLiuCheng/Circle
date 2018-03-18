@@ -1,2 +1,6 @@
 <!--pages/splash/splash.wxml-->
-这是个启动页-hello
+<view class='container'>
+  <text>前车之鉴</text>
+
+  <text>后事之师</text>
+</view>

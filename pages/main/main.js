@@ -3,7 +3,8 @@ Page({
 
   data: {
     tabIndex : 0,
-    refreshUserInfo: false
+    refreshUserInfo: false,
+    refreshMainList: false
   },
 
   onLoad: function (options) {
@@ -15,6 +16,12 @@ Page({
       getApp().print('刷新用户信息')
       this.data.refreshUserInfo = false
       this.myModal.refreshUserInfo()
+    }
+
+    if (this.homeModal != undefined && this.data.refreshMainList) {
+      getApp().print('刷新首页数据')
+      this.data.refreshMainList = false
+      this.homeModal.refreshList()
     }
   },
 

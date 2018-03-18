@@ -16,7 +16,7 @@ var requestUserInfo = function (that) {
       'content-type': 'application/json'
     },
     success: function (res) {
-      getApp().print(res)
+      // getApp().print(res)
       if (res.statusCode == 200 && res.data.code == 0) {
         var data = res.data.data
         // var nickName = data.nickname != undefined ? data.nickname : ''

@@ -1,0 +1,7 @@
+<!--pages/report/report.wxml-->
+
+<view class='container'>
+  <textarea class='content' placeholder="举报理由（必填）" maxlength='1024'></textarea>
+  <input class='contact' placeholder='qq或者微信号（必填）'></input>
+  <button class='saveInfoBtn'>提交</button>
+</view>
