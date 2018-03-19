@@ -11,7 +11,7 @@
             <image class="user_info_avatar" src="{{item.user.headUrl}}"></image>
             <view class='user_info_name_address'>
               <text class='user_info_name'>{{item.user.nickname}}</text>
-              <text class='user_info_address'>位置:{{item.address}}({{item.range}})</text>
+              <text class='user_info_address'>位置:{{item.address}}</text>
             </view>
             <text class='user_info_report' data-item='{{item}}' catchtap='report'>举报</text>
           </view>

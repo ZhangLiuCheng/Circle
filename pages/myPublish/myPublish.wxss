@@ -88,6 +88,8 @@
 
 .item_bd_title_content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .item_bd_title {
@@ -96,15 +98,29 @@
   display: -webkit-box;
   word-break: break-all;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.item_bd_status {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.item_bd_reason {
+  margin-top: 3rpx;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  color: #606060;
+}
+
 .item_bd_image {
   width: 250rpx;
-  height: 160rpx;
+  height: 180rpx;
   margin-left: 20rpx;
+  margin-bottom: 10rpx;
 }
 
 .item_bd_image-hidden {
@@ -112,7 +128,7 @@
 }
 
 .item_function {
-  margin-top: 30rpx;
+  margin-top: 10rpx;
   float: right;
   display: flex;
   flex-direction: row;

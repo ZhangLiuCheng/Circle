@@ -100,15 +100,19 @@ Page({
     prevPage.data.refreshMainList = true
 
     let item = res.currentTarget.dataset.item
-    console.log(item)
-    var collectType = item.isCollect + 1;
-    this.requestCollect(item.id, collectType)
+    let collectType = 0
+    if (item.isCollect == 0 || item.isCollect == undefined) {
+      collectType = 1
+    } else {
+      collectType = 2
+    }
 
+    this.requestCollect(item.id, collectType)
     let newList = this.data.list
     // 更新列表数据
     for (var i = 0; i < newList.length; i++) {
       if (newList[i].id == item.id) {
-        if (newList[i].isCollect == 0) {
+        if (newList[i].isCollect == 0 || item.isCollect == undefined) {
           newList[i].isCollect = 1
           newList[i].supportCount++
         } else {

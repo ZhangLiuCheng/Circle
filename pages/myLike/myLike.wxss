@@ -98,6 +98,11 @@
   font-size: 30rpx;
   color: #404040;
   margin-top: 20rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .item_function {
