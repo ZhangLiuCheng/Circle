@@ -4,7 +4,21 @@ page {
 }
 
 .container {
+  width: 100%;
+  position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
+.text1 {
+  width: 30rpx;
+  margin-right: 100rpx;
+  margin-top: 100rpx;
+}
+
+.text2 {
+  width: 30rpx;
+  margin-right: 40rpx;
+  margin-top: 200rpx;
 }

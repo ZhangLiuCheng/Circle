@@ -1,1 +1,21 @@
 /* pages/aboutUs/aboutUs.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.text1 {
+  font-size: 30rpx;
+  margin-top: 30rpx;
+  color: #404040;
+}
+
+.text2 {
+  font-size: 40rpx;
+  margin-top: 100rpx;
+  text-align: center;
+  color: #404040;
+}

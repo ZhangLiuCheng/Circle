@@ -18,24 +18,12 @@ Page({
     this.infoViewModal = this.selectComponent("#infoViewModal");
   },
 
-  onShow: function () {
-  
-  },
-
-  onHide: function () {
-  
-  },
-
-  onUnload: function () {
-  
-  },
-
   onPullDownRefresh: function () {
   
   },
 
   onReachBottom: function () {
-    pageIndex++;
+    this.data.pageIndex++;
     this.requestSearchList()
     console.log("onReachBottom: 上拉加载更多")
   },

@@ -1,6 +1,7 @@
 <!--pages/splash/splash.wxml-->
 <view class='container'>
-  <text>前车之鉴</text>
 
-  <text>后事之师</text>
+  <text class='text2'>后事之师</text>
+  <text class='text1'>前车之鉴</text>
+
 </view>

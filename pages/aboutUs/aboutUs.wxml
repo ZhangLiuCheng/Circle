@@ -1,2 +1,14 @@
 <!--pages/aboutUs/aboutUs.wxml-->
-<text>关于我们</text>
+
+<view class='container'>
+
+  <text class='text1'>目标：搭建一个《防忽悠，防坑，防上当受骗》的平台。</text>
+
+  <text class='text1'>目前：缺少美术UI和产品，诚邀志同道合者一起加入</text>
+
+  <text class='text1'>QQ：1045758110</text>
+
+  
+  <text class='text2'>真诚期待您的加入！！！</text>
+
+</view>
