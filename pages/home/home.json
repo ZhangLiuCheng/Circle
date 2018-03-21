@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "homeKindModal": "../homeKind/homeKind",
-    "infoViewModal" : "../infoView/infoView"
+    "infoViewModal" : "../infoView/infoView",
+    "loadmoreViewModal": "../loadmoreView/loadmoreView"
   }
 }

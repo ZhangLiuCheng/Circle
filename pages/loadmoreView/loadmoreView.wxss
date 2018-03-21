@@ -1,0 +1,76 @@
+/* pages/loadmoreView/loadmoreView.wxss */
+
+.info {
+  width: 100%;
+  height: 116rpx;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: rgba(125, 125, 125, 0.1)
+}
+
+.info-layout {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  数据加载中  */
+.loading-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.loading-layout-image {
+  width: 88rpx;
+  height: 88rpx;
+  animation: a 1s steps(12) infinite;
+}
+
+@keyframes a {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(1turn);
+    transform: rotate(1turn);
+  }
+}
+
+
+/*  数据为空  */
+
+.empty-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.empty-layout-text {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+
+/*  数据获取失败  */
+
+.error-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10rpx;
+}
+
+.error-layout-text {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #333333;
+}

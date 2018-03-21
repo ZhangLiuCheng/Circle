@@ -1,0 +1,22 @@
+<!--pages/loadmoreView/loadmoreView.wxml-->
+
+<view class='info' hidden='{{modalHidden}}'>
+  <view class='info-layout' style='margin-top: {{modalTop}}rpx;margin-bottom: {{modalBottom}}rpx;'>
+
+    <!-- 数据出错  -->
+    <view class='error-layout' hidden='{{errorHidden}}'>
+      <text class='error-layout-text' catchtap='loadmore'>点击加载更多</text>
+    </view>
+
+    <!-- 没有更多数据了  -->
+    <view class='empty-layout' hidden='{{emptyHidden}}'>
+      <text class='empty-layout-text'>已经到底了！！！</text>
+    </view>
+
+    <!-- 数据加载中  -->
+    <view class='loading-layout' hidden='{{loadingHidden}}'>
+      <image class='loading-layout-image' src='/images/loading.png'></image>
+    </view>
+
+  </view>
+</view>

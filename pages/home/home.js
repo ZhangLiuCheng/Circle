@@ -20,6 +20,8 @@ Component({
 
   ready: function () {
     this.infoViewModal = this.selectComponent("#infoViewModal");
+    this.loadmoreViewModal = this.selectComponent("#loadmoreViewModal");
+
     this.requestNewsList(0, 0)
   },
 
@@ -87,26 +89,6 @@ Component({
       this.requestNewsList(this.data.parentId, this.data.childId)
     },
 
-    refreshNewsData: function (newsData) {
-      var listData = util.formatNewsType(newsData)
-      var newList = []
-      if (this.data.pageIndex == 0) {
-        newList = listData
-      } else {
-        newList = this.data.list.concat(listData)
-      }
-      this.setData({
-        list: newList,
-      })
-
-      var empty = this.data.list.length <= 0;
-      if (empty) {
-        this.infoViewModal.showEmptyView('暂无数据，请查看其他分类')
-      } else {
-        this.infoViewModal.hideInfoView()
-      }
-    },
-
     refreshList: function () {
       this.requestNewsList(this.data.parentId, this.data.childId)
     },
@@ -162,14 +144,13 @@ Component({
       })
     },
 
-
     requestNewsList: function (parentId, childId) {
       var that = this
       var app = getApp()
-      // getApp().print("parentId:" + parentId + " , childId: " + childId + " , pageIndex: " + pageIndex)
-
       if (that.data.pageIndex == 0) {
         that.infoViewModal.showLoadingView()
+      } else {
+        that.loadmoreViewModal.showLoadingView()
       }
       wx.request({
         url: constants.newsListUrl,
@@ -185,22 +166,54 @@ Component({
           'content-type': 'application/json'
         },
         success: function (res) {
-          getApp().print(res)
           if (res.statusCode == 200 && res.data.code == 0) {
             var list = res.data.data;
             that.refreshNewsData(list)
           } else {
-            if (that.data.pageIndex == 0) {
-              that.infoViewModal.showErrorView()
-            }
+            requestFail(res)
           }
         },
         fail: function (res) {
-          if (that.data.pageIndex == 0) {
-            that.infoViewModal.showErrorView()
-          }
+          requestFail(res)
         }
       })
+
+      function requestFail(res) {
+        if (that.data.pageIndex == 0) {
+          that.infoViewModal.showErrorView()
+        } else {
+          that.data.pageIndex--
+          that.loadmoreViewModal.showErrorView()
+        }
+      }
+    },
+
+    refreshNewsData: function (newsData) {
+      var listData = util.formatNewsType(newsData)
+      var newList = []
+      if (this.data.pageIndex == 0) {
+        newList = listData
+      } else {
+        newList = this.data.list.concat(listData)
+      }
+      this.setData({
+        list: newList,
+      })
+
+      var empty = this.data.list.length <= 0;
+      if (empty) {
+        this.infoViewModal.showEmptyView('暂无数据，请查看其他分类')
+      } else {
+        this.infoViewModal.hideInfoView()
+      }
+
+      // 最后一页数据
+      if (listData.length < this.data.pageSize) {
+        this.loadmoreViewModal.showEmptyView()
+      }
+      if (listData.length == 0) {
+        this.data.pageIndex--
+      }
     },
 
     requestCollect: function (newsId, collectType) {
