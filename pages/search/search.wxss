@@ -16,8 +16,12 @@
   height: auto;
   padding-left: 20rpx;
   padding-right: 20rpx;
-  border-bottom: 20rpx solid rgba(125, 125, 125, 0.1);
+  border-top: 20rpx solid rgba(125, 125, 125, 0.1);
   background-color: white
+}
+
+.item_bd:first-child {
+  border-top: 0rpx;
 }
 
 .user_info {

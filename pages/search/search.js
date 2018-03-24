@@ -16,6 +16,7 @@ Page({
 
   onReady: function () {
     this.infoViewModal = this.selectComponent("#infoViewModal");
+    this.loadmoreViewModal = this.selectComponent("#loadmoreViewModal");
   },
 
   onPullDownRefresh: function () {
@@ -25,7 +26,6 @@ Page({
   onReachBottom: function () {
     this.data.pageIndex++;
     this.requestSearchList()
-    console.log("onReachBottom: 上拉加载更多")
   },
 
   onShareAppMessage: function () {
@@ -47,6 +47,7 @@ Page({
   onSearchTo: function (e) {
     console.log("onSearchTo ")
     this.data.keyword = e.detail
+    this.data.pageIndex = 0
     this.requestSearchList()
   },
 
@@ -94,12 +95,22 @@ Page({
     } else {
       this.infoViewModal.hideInfoView()
     }
+
+    // 最后一页数据
+    if (data.length < this.data.pageSize) {
+      this.loadmoreViewModal.showEmptyView()
+    }
+    if (data.length == 0) {
+      this.data.pageIndex--
+    }
   },
 
   requestSearchList: function () {
     let that = this
     if (that.data.pageIndex == 0) {
       that.infoViewModal.showLoadingView()
+    } else {
+      that.loadmoreViewModal.showLoadingView()
     }
     var token = getApp().globalData.userToken
     var keyword = that.data.keyword
@@ -115,22 +126,26 @@ Page({
         'content-type': 'application/json;charset=utf-8'
       },
       success: function (res) {
-        getApp().print(res)
         if (res.statusCode == 200 && res.data.code == 0) {
           var list = res.data.data;
           that.refreshNewsData(list)
         } else {
-          if (that.data.pageIndex == 0) {
-            that.infoViewModal.showErrorView()
-          }
+          requestFail(res)
         }
       },
       fail: function (res) {
-        if (that.data.pageIndex == 0) {
-          that.infoViewModal.showErrorView()
-        }
+        requestFail(res)
       }
     })
+
+    function requestFail(res) {
+      if (that.data.pageIndex == 0) {
+        that.infoViewModal.showErrorView()
+      } else {
+        that.data.pageIndex--
+        that.loadmoreViewModal.showErrorView()
+      }
+    }
   },
 
   requestCollect: function (newsId, collectType) {

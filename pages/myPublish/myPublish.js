@@ -15,6 +15,7 @@ Page({
 
   onReady: function () {
     this.infoViewModal = this.selectComponent("#infoViewModal");
+    this.loadmoreViewModal = this.selectComponent("#loadmoreViewModal");
     this.requestMyNewsList()
   },
 
@@ -36,6 +37,11 @@ Page({
     this.requestMyNewsList()
   },
 
+  loadmoreRetry: function () {
+    this.data.pageIndex++
+    this.requestMyNewsList()
+  },
+
   refreshNewsData: function (data) {
     var newList = []
     if (this.data.pageIndex == 0) {
@@ -53,12 +59,22 @@ Page({
     } else {
       this.infoViewModal.hideInfoView()
     }
+
+    // 最后一页数据
+    if (data.length < this.data.pageSize) {
+      this.loadmoreViewModal.showEmptyView()
+    }
+    if (data.length == 0) {
+      this.data.pageIndex--
+    }
   },
 
   requestMyNewsList: function () {
     var that = this
     if (that.data.pageIndex == 0) {
       that.infoViewModal.showLoadingView()
+    } else {
+      that.loadmoreViewModal.showLoadingView()
     }
     var token = getApp().globalData.userToken
     wx.request({
@@ -78,18 +94,23 @@ Page({
           var list = res.data.data;
           that.refreshNewsData(list)
         } else {
-          if (that.data.pageIndex == 0) {
-            that.infoViewModal.showErrorView()
-          }
+          requestFail(res)
         }
       },
       fail: function (res) {
         wx.stopPullDownRefresh()
-        if (that.data.pageIndex == 0) {
-          that.infoViewModal.showErrorView()
-        }
+        requestFail(res)
       }
     })
+
+    function requestFail(res) {
+      if (that.data.pageIndex == 0) {
+        that.infoViewModal.showErrorView()
+      } else {
+        that.data.pageIndex--
+        that.loadmoreViewModal.showErrorView()
+      }
+    }
   },
 
   // 点赞

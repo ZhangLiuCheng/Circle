@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "infoViewModal": "../infoView/infoView"
+    "infoViewModal": "../infoView/infoView",
+    "loadmoreViewModal": "../loadmoreView/loadmoreView"
   },
   "navigationBarTitleText": "我的喜欢",
   "enablePullDownRefresh": true,

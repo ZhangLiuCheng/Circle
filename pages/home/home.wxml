@@ -46,7 +46,7 @@
         </view>
       </block>
 
-      <loadmoreViewModal id='loadmoreViewModal' bind:retry="networkRetry"></loadmoreViewModal>
+      <loadmoreViewModal id='loadmoreViewModal' bind:loadmore="loadmoreRetry"></loadmoreViewModal>
 
     </view>
   </scroll-view>

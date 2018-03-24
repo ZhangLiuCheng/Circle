@@ -30,3 +30,4 @@
     </view>
   </navigator>
 </block>
+<loadmoreViewModal id='loadmoreViewModal' bind:loadmore="loadmoreRetry"></loadmoreViewModal>

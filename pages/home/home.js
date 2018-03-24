@@ -62,7 +62,6 @@ Component({
     // 举报
     report: function (res) {
       console.log(res.currentTarget.dataset.item)
-
       wx.showActionSheet({
         itemList: ['信息不可靠', '其他'],
         success: function (res) {
@@ -94,10 +93,16 @@ Component({
     },
 
     networkRetry: function () {
-      getApp().print("重试")
+      getApp().print("网络重试")
       this.requestNewsList(this.data.parentId, this.data.childId)
     },
 
+    loadmoreRetry: function () {
+      getApp().print("加载更多重试")
+      this.data.pageIndex++
+      this.requestNewsList(this.data.parentId, this.data.childId)
+    },
+    
     /*
     // 分享
     share: function (res) {
@@ -166,6 +171,7 @@ Component({
           'content-type': 'application/json'
         },
         success: function (res) {
+          // getApp().print(res)
           if (res.statusCode == 200 && res.data.code == 0) {
             var list = res.data.data;
             that.refreshNewsData(list)

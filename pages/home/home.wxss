@@ -15,7 +15,7 @@
   position: absolute;
 }
 
-.index-bd{
+.index-bd {
   padding-top: 80rpx;
   padding-bottom: 100rpx;
 }

@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "searchHistoryModal": "../searchHistory/searchHistory",
-    "infoViewModal": "../infoView/infoView"
+    "infoViewModal": "../infoView/infoView",
+    "loadmoreViewModal": "../loadmoreView/loadmoreView"
   },
   "navigationBarTitleText": "搜索"
 }
