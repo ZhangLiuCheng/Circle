@@ -68,9 +68,23 @@ module.exports = {
   newsCollection: host + 'news/setCollection',
 
   /**
+   * 举报
+   * method:post
+   * params:token, newsId, message, account
+   */
+  newsReport: host + '/news/report',
+
+  /**
    * 收藏
    * method:get
    * params:token, pageIndex，pageSize
    */
   myCollection: host + 'news/myCollection',
+
+  /**
+   * 建议反馈
+   * method:post
+   * params:token, message, account
+   */
+  feedback: host + 'aboutUs/addProposal'
 }

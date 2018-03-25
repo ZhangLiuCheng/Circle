@@ -1,6 +1,7 @@
 // pages/home/home.js
 var util = require('../../utils/util.js')
 var constants = require('../../utils/constants.js')
+var http = require('../../utils/http.js')
 
 Component({
   properties: {
@@ -58,25 +59,6 @@ Component({
         url: '../detail/detail?id=' + item.id,
       })
     },
-    
-    // 举报
-    report: function (res) {
-      console.log(res.currentTarget.dataset.item)
-      wx.showActionSheet({
-        itemList: ['信息不可靠', '其他'],
-        success: function (res) {
-          console.log(res.tapIndex)
-          if (res.tapIndex == 1) {
-            wx.navigateTo({
-              url: '../report/report',
-            })
-          }
-        },
-        fail: function (res) {
-          console.log(res.errMsg)
-        }
-      })
-    },
 
     onKindChange: function (res) {
       this.data.pageIndex = 0
@@ -101,6 +83,36 @@ Component({
       getApp().print("加载更多重试")
       this.data.pageIndex++
       this.requestNewsList(this.data.parentId, this.data.childId)
+    },
+
+    // 举报
+    report: function (res) {
+      let item = res.currentTarget.dataset.item
+      let that = this
+      wx.showActionSheet({
+        itemList: ['信息不可靠', '其他'],
+        success: function (res) {
+          console.log(res.tapIndex)
+          if (res.tapIndex == 0) {
+            that.requestReport(item)
+          } else if (res.tapIndex == 1) {
+            wx.navigateTo({
+              url: '../report/report?id=' + item.id,
+            })
+          }
+        }
+      })
+    },
+
+    requestReport: function (item) {
+      http.requestNewsReport(getApp().globalData.userToken, item.id,
+        '消息不可靠', '', function (success, msg) {
+          wx.showToast({
+            title: msg,
+            icon: 'none',
+            duration: 1500
+          })
+        })
     },
     
     /*

@@ -1,66 +1,71 @@
 // pages/report/report.js
+
+var http = require('../../utils/http.js')
+var util = require('../../utils/util.js')
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    newsId: '',
+    contentValue: '',
+    contactValue: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    this.data.newsId = options.id
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  contentValueChnage: function (e) {
+    this.setData({
+      contentValue: e.detail.value
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  contactValueChnage: function (e) {
+    this.setData({
+      contactValue: e.detail.value
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  submit: function () {
+    if (this.data.contentValue.length <= 0) {
+      util.showToast('请输入举报内容')
+      return
+    } else if (this.data.contactValue.length <= 0) {
+      util.showToast('请输入您的联系方式')
+      return
+    }
+    this.requestReport()
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  requestReport: function () {
+    wx.showLoading({
+      title: '提交中',
+    })
+    http.requestNewsReport(getApp().globalData.userToken, this.data.newsId,
+      this.data.contentValue, this.data.contactValue, function (success, msg) {
+        wx.hideLoading()
+        if (success) {
+          wx.showModal({
+            content: '感谢您的举报，我们将尽快处理。',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateBack()
+              }
+            }
+          })
+        } else {
+          wx.showToast({
+            title: msg,
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
