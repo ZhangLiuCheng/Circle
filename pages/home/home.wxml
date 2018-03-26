@@ -8,7 +8,7 @@
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">
         <view class="item_bd" data-item='{{item}}' catchtap='detail'>
           <view class='user_info'>
-            <image class="user_info_avatar" src="{{item.user.headUrl}}"></image>
+            <image class="user_info_avatar" src="{{item.user.headUrl}}" mode='aspectFill'></image>
             <view class='user_info_name_address'>
               <text class='user_info_name'>{{item.user.nickname}}</text>
               <text class='user_info_address'>位置:{{item.address}}</text>

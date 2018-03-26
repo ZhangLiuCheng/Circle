@@ -2,7 +2,7 @@
 
 <view class='userInfo' catchtap='chooseImage'>
   <text class='user-name'>头像</text>
-  <image class="user-avatar" src="{{avatarPath}}" binderror='headError'></image>
+  <image class="user-avatar" src="{{avatarPath}}" binderror='headError' mode='aspectFill'></image>
   <image class='navigator-arrow' src="/images/arraw.png"></image>
 </view>
 

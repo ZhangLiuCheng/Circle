@@ -68,7 +68,7 @@ Component({
 
     // 点击空白的地方
     touchPanel: function () {
-      this.closePanel()
+      // this.closePanel()
     },
 
     searchTextInput: function(e) {

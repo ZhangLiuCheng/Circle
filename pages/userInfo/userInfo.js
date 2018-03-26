@@ -15,23 +15,17 @@ Page({
 
   onLoad: function (options) {
     console.log(options)
-    this.setData({
-      nickName: options.nickName,
-      headUrl: options.headUrl,
-      avatarPath: options.headUrl
-    })
+    this.data.nickName = options.nickName
+    this.data.headUrl = options.headUrl
   },
 
   onReady: function () {
-  
-  },
-
-  onUnload: function () {
-  
-  },
-
-  onShareAppMessage: function () {
-  
+    var avatarPath = this.data.headUrl
+    var nickName = this.data.nickName
+    this.setData({
+      nickName: nickName,
+      avatarPath: avatarPath
+    })
   },
 
   bindNicknameInput: function (e) {
@@ -51,7 +45,6 @@ Page({
         })
         var imagePath = res.tempFilePaths[0]
         that.requestUploadFile(imagePath, function (success, filePath, imageUrl) {
-          console.log(imagePath + '  -------  ' + imageUrl)
           wx.hideLoading()
           if (success) {
             that.setData({
@@ -72,6 +65,7 @@ Page({
   },
 
   headError: function () {
+    console.error('headError')
     this.setData({
       avatarPath: defaultAvatar
     })
@@ -92,13 +86,17 @@ Page({
     })
     var that = this
     var userToken = getApp().globalData.userToken
+    var imgUrl = that.data.headUrl
+    if (that.data.headUrl.indexOf('http') == 0) {
+      imgUrl = ''
+    }
     wx.request({
       method: "POST",
       url: constants.updateUser,
       data: {
         token: userToken,
         nickName: that.data.nickName,
-        headUrl: that.data.headUrl
+        headUrl: imgUrl
       },
       header: {
         "content-type": "application/x-www-form-urlencoded;charset=utf-8"

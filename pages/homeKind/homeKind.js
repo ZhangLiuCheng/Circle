@@ -70,7 +70,6 @@ Component({
     },
 
     catchKind: function (e) {
-      console.log(e.currentTarget.dataset.kind)
       this.tiggerKindChange(this.data.currentTab, e.currentTarget.dataset.kind)
       this.closePanel(this.data.currentTab)
     },

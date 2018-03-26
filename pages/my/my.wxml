@@ -3,7 +3,7 @@
 
   <scroll-view class='scrollview' scroll-y="true">
     <view class='userInfo' catchtap='userInfo'>
-      <image class="user-avatar" src="{{avatarPath}}" binderror='headError'></image>
+      <image class="user-avatar" src="{{avatarPath}}" binderror='headError' mode='aspectFill'></image>
       <text class='user-name'>{{nickName}}</text>
       <image class='navigator-arrow' src="/images/arraw.png"></image>
     </view>

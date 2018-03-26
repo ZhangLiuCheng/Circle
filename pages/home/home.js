@@ -44,11 +44,11 @@ Component({
     },
 
     scrollToTop: function (res) {
-      console.log("scrollToTop: 下拉刷新")
+      // console.log("scrollToTop: 下拉刷新")
     },
 
     scrollToBottom: function (res) {
-      console.log("scrollToBottom: 上拉加载更多")
+      // console.log("scrollToBottom: 上拉加载更多")
       this.data.pageIndex++;
       this.requestNewsList(this.data.parentId, this.data.childId)
     },
@@ -92,7 +92,6 @@ Component({
       wx.showActionSheet({
         itemList: ['信息不可靠', '其他'],
         success: function (res) {
-          console.log(res.tapIndex)
           if (res.tapIndex == 0) {
             that.requestReport(item)
           } else if (res.tapIndex == 1) {
@@ -138,7 +137,6 @@ Component({
     // 点赞
     like: function (res) {
       let item = res.currentTarget.dataset.item
-      console.log(item)
       var collectType = item.isCollect + 1;
       this.requestCollect(item.id, collectType)
 
