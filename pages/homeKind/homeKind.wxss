@@ -1,4 +1,5 @@
 /* pages/homeKind/homeKind.wxss */
+
 .home_kind {
   /* background: red; */
   width: 100%;
@@ -10,7 +11,7 @@
 }
 
 .home_kind_open {
-   height: 100%; 
+  height: 100%;
 }
 
 .swiper-tab {
@@ -18,17 +19,17 @@
   width: 100%;
   height: 80rpx;
   background-color: #fff;
-  /* border-top: 1rpx solid #f0f0f0; */
   border-bottom: 1rpx solid #e0e0e0;
   z-index: 1;
 }
 
+/*
 .swiper-tab-list {
   width: 33.33%;
   color: #777;
 }
 
-.swiper-tab-content {
+ .swiper-tab-content {
   width: auto;
   height: auto;
   display: inline-flex; 
@@ -40,6 +41,26 @@
   align-content: center;
   align-items: center;
   justify-content: center
+} */
+
+.swiper-tab-list {
+  width: 33.33%;
+  color: #777;
+  display: flex;
+  flex-direction: row;
+}
+
+.swiper-tab-content {
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  flex-direction: row;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, 0);
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .swiper-tab-content-txt {
@@ -55,7 +76,7 @@
 
 .arraw_image_on {
   opacity: 1;
-  transform: rotate(0deg)
+  transform: rotate(0deg);
 }
 
 .on {
@@ -87,21 +108,21 @@
 .content {
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
-  display: none; 
+  display: none;
 }
 
 .content_open {
-  display: flex; 
+  display: flex;
   flex-direction: column;
 }
 
 .option {
   width: 100%;
   height: auto;
-  background-color: #FEFEFE;
+  background-color: #fefefe;
 }
 
-.option-layout {
+ /* .option-layout {
   padding-bottom: 60rpx;
   padding-top: 60rpx;
   width: 90%;
@@ -126,4 +147,31 @@
   line-height: 70rpx; 
   border-radius: 10rpx;
   text-align: center;
+}  */
+
+ .option-layout {
+  padding-bottom: 30rpx;
+  padding-top: 30rpx; 
+  width: 100%;
+  height: 20%;
+  position: relative;
+  margin-left: 5%; 
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
 }
+
+.option-item-txt {
+  flex: 0 0 26%;
+  margin: 2%; 
+  font-size: 28rpx;
+  color: #da7c0c;
+  background-color: #eeeeee;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 70rpx;
+  line-height: 70rpx; 
+  border-radius: 10rpx;
+  text-align: center;
+} 

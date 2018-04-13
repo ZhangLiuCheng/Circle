@@ -13,12 +13,14 @@ page {
 
 .text1 {
   width: 40rpx;
-  margin-right: 120rpx;
+  margin-right: 60rpx;
   margin-top: 100rpx;
+  font-weight: bold
 }
 
 .text2 {
   width: 40rpx;
   margin-right: 40rpx;
   margin-top: 240rpx;
+  font-weight: bold
 }
