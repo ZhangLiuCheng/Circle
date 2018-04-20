@@ -1,7 +1,5 @@
-// var host = 'http://192.168.1.104:8080/quanzi/'
-var host = 'https://www.bestcircler.com/api/'
 
-// var host = 'https://26acf035.ngrok.io/quanzi/'
+const host = 'https://alert.bestcircler.com/v1/'
 
 module.exports = {
   /**
